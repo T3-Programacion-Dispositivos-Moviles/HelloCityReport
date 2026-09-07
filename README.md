@@ -24,10 +24,8 @@ Proyecto Integrador de la materia **Programación de Dispositivos Móviles** - L
 app/src/main/java/com/equipo3/HelloCityReport/
 ├─ mode/            # Datos y lógica de negocio
 ├─ view/             # Activities, Fragments, adapters, layouts
-├─ controller/       # Coordina model ↔ view (MVC); en Fase 2 pasa a presenter/
+├─ controller/       # Coordina model <-> view (MVC)
 ```
-
-
 ---
 
 ## Cómo correr el proyecto
