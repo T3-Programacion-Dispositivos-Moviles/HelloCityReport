@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Hello CityReport</string>
+
+    <!-- Títulos que muestra la barra superior según la pantalla -->
+    <string name="titulo_lista">Incidencias reportadas</string>
+    <string name="titulo_detalle">Detalle de incidencia</string>
+
+    <!-- Resumen "Categoría Estado" que se muestra en cada fila de la list -->
+    <string name="incidencia_resumen">%1$s - %2$s</string>
+
+    <!-- Etiquetas de la pantalla de detalle (%1$s se sustituye por el valor). -->
+    <string name="detalle_categoria">Categoría: %1$s</string>
+    <string name="detalle_estado">Estado: %1$s</string>
+    <string name="detalle_ubicacion">Ubicación: %1$s</string>
+    <string name="detalle_fecha">Fecha de reporte: %1$s</string>
 </resources>

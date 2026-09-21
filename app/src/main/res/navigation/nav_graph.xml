@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    NavGraph: define las pantallas (destinos) de la app y cómo se conectan.
+    startDestination = pantalla inicial.
+    Cada <action> es una "ruta" de navegación entre dos destinos.
+-->
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/listaIncidenciasFragment">
+
+    <fragment
+        android:id="@+id/listaIncidenciasFragment"
+        android:name="com.equipo3.hellocityreport.view.fragments.ListaIncidenciasFragment"
+        android:label="@string/titulo_lista"
+        tools:layout="@layout/fragment_lista_incidencias">
+
+        <!-- Ruta de la lista hacia el detalle. -->
+        <action
+            android:id="@+id/action_lista_to_detalle"
+            app:destination="@id/detalleIncidenciaFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detalleIncidenciaFragment"
+        android:name="com.equipo3.hellocityreport.view.fragments.DetalleIncidenciaFragment"
+        android:label="@string/titulo_detalle"
+        tools:layout="@layout/fragment_detalle_incidencia">
+
+        <!-- Argumento que recibe: el id de la incidencia a mostrar. -->
+        <argument
+            android:name="incidenciaId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+
+</navigation>
