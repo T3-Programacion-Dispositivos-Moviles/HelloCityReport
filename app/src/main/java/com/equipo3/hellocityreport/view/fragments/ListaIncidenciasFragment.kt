@@ -13,9 +13,9 @@ import com.equipo3.hellocityreport.model.IncidenciaDataSource
 import com.equipo3.hellocityreport.view.adapter.IncidenciaAdapter
 
 /**
- * Primera pantalla (startDestination del NavGraph).
- * Muestra la lista de incidencias en un RecyclerView y, al tocar una,
- * navega hacia el detalle pasándole el id de la incidencia.
+ * Pantalla principal (Home, startDestination del NavGraph).
+ * Muestra la lista de incidencias en un RecyclerView. Al tocar una navega al
+ * detalle pasándole su id; el botón flotante abre el formulario de nueva incidencia.
  */
 class ListaIncidenciasFragment : Fragment() {
 
@@ -44,6 +44,11 @@ class ListaIncidenciasFragment : Fragment() {
 
         binding.recyclerIncidencias.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerIncidencias.adapter = adapter
+
+        // Boton flotante: abre el formulario de nueva incidencia.
+        binding.fabNuevaIncidencia.setOnClickListener {
+            findNavController().navigate(R.id.action_lista_to_nueva)
+        }
     }
 
     override fun onDestroyView() {

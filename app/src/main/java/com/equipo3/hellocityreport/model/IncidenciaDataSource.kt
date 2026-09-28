@@ -1,16 +1,19 @@
 package com.equipo3.hellocityreport.model
 
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+
 /**
  * Fuente de datos temporal (en memoria).
  *
  * Es un `object` (Singleton en Kotlin): existe una única instancia en toda la
- * app. En prácticas posteriores estos datos vendrán de una base de datos (Room)
- * o de una API; por ahora usamos una lista fija para poder poblar el
- * RecyclerView y probar la navegación.
+ * app. Las incidencias nuevas se guardan mientras la app está abierta; al
+ * cerrarla se pierden. En prácticas posteriores se usará una base de datos.
  */
 object IncidenciaDataSource {
 
-    private val incidencias = listOf(
+    private val incidencias = mutableListOf(
         Incidencia(
             id = 1,
             titulo = "Bache en Av. Instituto Politécnico Nacional",
@@ -63,9 +66,33 @@ object IncidenciaDataSource {
         )
     )
 
-    /** Devuelve todas las incidencias para mostrarlas en la lista. */
-    fun obtenerTodas(): List<Incidencia> = incidencias
+    /** Devuelve una copia de todas las incidencias para mostrarlas en la lista. */
+    fun obtenerTodas(): List<Incidencia> = incidencias.toList()
 
     /** Busca una incidencia por su id (se usa en la pantalla de detalle). */
     fun buscarPorId(id: Int): Incidencia? = incidencias.find { it.id == id }
+
+    /**
+     * Registra una nueva incidencia al inicio de la lista.
+     * El id es el mayor existente + 1, el estado inicial es PENDIENTE
+     * y la fecha es la del día.
+     */
+    fun agregar(
+        titulo: String,
+        descripcion: String,
+        categoria: Categoria,
+        ubicacion: String
+    ): Incidencia {
+        val nueva = Incidencia(
+            id = (incidencias.maxOfOrNull { it.id } ?: 0) + 1,
+            titulo = titulo,
+            descripcion = descripcion,
+            categoria = categoria,
+            estado = Estado.PENDIENTE,
+            ubicacion = ubicacion,
+            fecha = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date())
+        )
+        incidencias.add(0, nueva)
+        return nueva
+    }
 }

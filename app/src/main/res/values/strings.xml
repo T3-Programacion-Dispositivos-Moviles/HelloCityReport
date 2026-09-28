@@ -4,6 +4,7 @@
     <!-- Títulos que muestra la barra superior según la pantalla -->
     <string name="titulo_lista">Incidencias reportadas</string>
     <string name="titulo_detalle">Detalle de incidencia</string>
+    <string name="titulo_nueva">Nueva incidencia</string>
 
     <!-- Resumen "Categoría Estado" que se muestra en cada fila de la list -->
     <string name="incidencia_resumen">%1$s - %2$s</string>
@@ -13,4 +14,16 @@
     <string name="detalle_estado">Estado: %1$s</string>
     <string name="detalle_ubicacion">Ubicación: %1$s</string>
     <string name="detalle_fecha">Fecha de reporte: %1$s</string>
+
+    <!-- Pantalla de nueva incidencia -->
+    <string name="boton_nueva_incidencia">Nueva incidencia</string>
+    <string name="hint_titulo">Título</string>
+    <string name="hint_categoria">Categoría</string>
+    <string name="hint_ubicacion">Ubicación</string>
+    <string name="hint_descripcion">Descripción</string>
+    <string name="nota_nueva_incidencia">La incidencia se registra con estado Pendiente y con la fecha de hoy.</string>
+    <string name="boton_guardar">Guardar incidencia</string>
+    <string name="error_campo_obligatorio">Este campo es obligatorio</string>
+    <string name="error_categoria">Selecciona una categoría</string>
+    <string name="mensaje_incidencia_guardada">Incidencia registrada</string>
 </resources>

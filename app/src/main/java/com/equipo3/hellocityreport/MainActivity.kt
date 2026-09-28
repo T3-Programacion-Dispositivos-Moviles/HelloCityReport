@@ -29,20 +29,23 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Ajusta el padding para no quedar debajo de la barra de estado/navegación.
+        // Se ajusta el padding para no quedar debajo de las barras del sistema
+        // ni del teclado
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            val barras = insets.getInsets(
+                WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime()
+            )
+            v.setPadding(barras.left, barras.top, barras.right, barras.bottom)
             insets
         }
 
-        // Obtenemos el NavController desde el NavHostFragment.
+        // Obtenemos el NavController desde el NavHostFragment
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
 
         // Conecta la Toolbar con la navegación: el título cambia solo y aparece
-        // la flecha "atrás" (Up) al entrar al detalle.
+        // la flecha "atrás" (Up) al entrar al detalle o a nueva incidencia
         appBarConfiguration = AppBarConfiguration(navController.graph)
         binding.toolbar.setupWithNavController(navController, appBarConfiguration)
     }

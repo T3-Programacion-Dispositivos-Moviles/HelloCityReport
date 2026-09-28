@@ -1,11 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Pantalla principal (Home): lista de incidencias y boton para crear una nueva. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/recyclerIncidencias"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingVertical="8dp"
-    android:clipToPadding="false"
-    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-    tools:listitem="@layout/item_incidencia" />
+    android:layout_height="match_parent">
+
+    <!-- paddingBottom deja espacio para que el boton no tape la ultima tarjeta. -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerIncidencias"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="8dp"
+        android:paddingBottom="88dp"
+        android:clipToPadding="false"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_incidencia" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fabNuevaIncidencia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:text="@string/boton_nueva_incidencia"
+        app:icon="@drawable/ic_add" />
+
+</FrameLayout>

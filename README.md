@@ -8,13 +8,13 @@ Proyecto Integrador de la materia **Programación de Dispositivos Móviles** - L
 
 ## Equipo y roles
 
-| Integrante | Rol | Responsabilidad principal |
-|---|---|---|
+| Integrante                      | Rol | Responsabilidad principal |
+|---------------------------------|---|---|
 | AVILES SALAZAR BRAULIO EMILIANO | Project Manager (PM) | Backlog, sprints y entregas |
-| RIVAS HERNANDEZ EDUARDO | Analista / Product Owner | Historias de usuario y requerimientos |
-| MARIN SALDIVAR GAEL ALEJANDRO | Arquitecto de Software | Estructura técnica y modelo de datos |
-| GONZALEZ CAMPOS LUIS ALBERTO | Desarrollador Android | Código, componentes y lógica |
-| RUIZ CRUZ ESTEPHANIE | Diseñador UI/UX + QA | Interfaz, flujos y pruebas |
+| BALDERAS ROCHA JOSE ANTONIO     | Analista / Product Owner | Historias de usuario y requerimientos |
+| MARIN SALDIVAR GAEL ALEJANDRO   | Arquitecto de Software | Estructura técnica y modelo de datos |
+| GONZALEZ CAMPOS LUIS ALBERTO    | Desarrollador Android | Código, componentes y lógica |
+| RUIZ CRUZ ESTEPHANIE            | Diseñador UI/UX + QA | Interfaz, flujos y pruebas |
 
 ---
 

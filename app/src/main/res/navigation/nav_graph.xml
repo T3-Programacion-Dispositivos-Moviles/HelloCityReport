@@ -20,7 +20,18 @@
         <action
             android:id="@+id/action_lista_to_detalle"
             app:destination="@id/detalleIncidenciaFragment" />
+
+        <!-- Ruta de la lista hacia el formulario de nueva incidencia. -->
+        <action
+            android:id="@+id/action_lista_to_nueva"
+            app:destination="@id/nuevaIncidenciaFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/nuevaIncidenciaFragment"
+        android:name="com.equipo3.hellocityreport.view.fragments.NuevaIncidenciaFragment"
+        android:label="@string/titulo_nueva"
+        tools:layout="@layout/fragment_nueva_incidencia" />
 
     <fragment
         android:id="@+id/detalleIncidenciaFragment"
