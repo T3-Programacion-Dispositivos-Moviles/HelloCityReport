@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Opciones de la barra de navegación inferior.
+    Cada id debe ser IGUAL al id del destino en nav_graph.xml: así NavigationUI
+    sabe a qué pantalla ir al tocar cada opción.
+-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/listaIncidenciasFragment"
+        android:icon="@drawable/ic_inicio"
+        android:title="@string/menu_inicio" />
+    <item
+        android:id="@+id/nuevaIncidenciaFragment"
+        android:icon="@drawable/ic_reportar"
+        android:title="@string/menu_reportar" />
+    <item
+        android:id="@+id/resumenFragment"
+        android:icon="@drawable/ic_resumen"
+        android:title="@string/menu_resumen" />
+</menu>

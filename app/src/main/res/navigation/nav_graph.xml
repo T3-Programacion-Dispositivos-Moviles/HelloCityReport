@@ -2,6 +2,8 @@
 <!--
     NavGraph: define las pantallas (destinos) de la app y cómo se conectan.
     startDestination = pantalla inicial.
+    Lista, Nueva incidencia y Resumen son las tres secciones de la barra inferior
+    (sus ids coinciden con los de res/menu/bottom_nav_menu.xml).
     Cada <action> es una "ruta" de navegación entre dos destinos.
 -->
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
@@ -20,11 +22,6 @@
         <action
             android:id="@+id/action_lista_to_detalle"
             app:destination="@id/detalleIncidenciaFragment" />
-
-        <!-- Ruta de la lista hacia el formulario de nueva incidencia. -->
-        <action
-            android:id="@+id/action_lista_to_nueva"
-            app:destination="@id/nuevaIncidenciaFragment" />
     </fragment>
 
     <fragment
@@ -32,6 +29,12 @@
         android:name="com.equipo3.hellocityreport.view.fragments.NuevaIncidenciaFragment"
         android:label="@string/titulo_nueva"
         tools:layout="@layout/fragment_nueva_incidencia" />
+
+    <fragment
+        android:id="@+id/resumenFragment"
+        android:name="com.equipo3.hellocityreport.view.fragments.ResumenFragment"
+        android:label="@string/titulo_resumen"
+        tools:layout="@layout/fragment_resumen" />
 
     <fragment
         android:id="@+id/detalleIncidenciaFragment"

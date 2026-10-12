@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Chip que solo informa el estado (no se puede tocar). Los colores se ponen en
+         código con ChipEstado.kt para que salgan del tema y cambien con los colores dinámicos. -->
+    <style name="Widget.CityReport.ChipEstado" parent="Widget.Material3.Chip.Assist">
+        <item name="android:clickable">false</item>
+        <item name="android:focusable">false</item>
+        <item name="android:textAppearance">?attr/textAppearanceLabelMedium</item>
+        <item name="chipStrokeWidth">0dp</item>
+        <item name="chipMinHeight">28dp</item>
+        <item name="ensureMinTouchTargetSize">false</item>
+    </style>
+
+    <!-- Etiqueta pequeña sobre cada dato (pantalla de detalle). -->
+    <style name="TextAppearance.CityReport.Etiqueta" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+    </style>
+</resources>

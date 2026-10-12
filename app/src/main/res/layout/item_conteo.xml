@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Una fila del resumen: nombre, cantidad con porcentaje y barra de progreso. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="14dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtEtiqueta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="?attr/textAppearanceBodyLarge"
+            tools:text="Pendiente" />
+
+        <TextView
+            android:id="@+id/txtCantidad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceLabelLarge"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            tools:text="3 (60 %)" />
+    </LinearLayout>
+
+    <!-- saveEnabled="false": esta fila se repite con el mismo id; si Android
+         restaurara su estado, pondría el mismo porcentaje en todas las barras.
+         No hace falta guardarlo porque el Presenter lo recalcula cada vez. -->
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/barraPorcentaje"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:max="100"
+        android:saveEnabled="false"
+        app:trackThickness="8dp"
+        tools:progress="60" />
+
+</LinearLayout>

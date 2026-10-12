@@ -8,10 +8,11 @@ import java.util.Locale
  * Fuente de datos temporal (en memoria).
  *
  * Es un `object` (Singleton en Kotlin): existe una única instancia en toda la
- * app. Las incidencias nuevas se guardan mientras la app está abierta; al
+ * app. Implementa IncidenciaRepository, que es lo único que conocen los
+ * Presenters. Las incidencias nuevas se guardan mientras la app está abierta; al
  * cerrarla se pierden. En prácticas posteriores se usará una base de datos.
  */
-object IncidenciaDataSource {
+object IncidenciaDataSource : IncidenciaRepository {
 
     private val incidencias = mutableListOf(
         Incidencia(
@@ -67,17 +68,17 @@ object IncidenciaDataSource {
     )
 
     /** Devuelve una copia de todas las incidencias para mostrarlas en la lista. */
-    fun obtenerTodas(): List<Incidencia> = incidencias.toList()
+    override fun obtenerTodas(): List<Incidencia> = incidencias.toList()
 
     /** Busca una incidencia por su id (se usa en la pantalla de detalle). */
-    fun buscarPorId(id: Int): Incidencia? = incidencias.find { it.id == id }
+    override fun buscarPorId(id: Int): Incidencia? = incidencias.find { it.id == id }
 
     /**
      * Registra una nueva incidencia al inicio de la lista.
      * El id es el mayor existente + 1, el estado inicial es PENDIENTE
      * y la fecha es la del día.
      */
-    fun agregar(
+    override fun agregar(
         titulo: String,
         descripcion: String,
         categoria: Categoria,

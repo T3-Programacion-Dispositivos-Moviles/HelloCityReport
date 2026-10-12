@@ -4,25 +4,31 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.equipo3.hellocityreport.R
+import com.equipo3.hellocityreport.contract.ListaIncidenciasContract
 import com.equipo3.hellocityreport.databinding.FragmentListaIncidenciasBinding
+import com.equipo3.hellocityreport.model.Incidencia
 import com.equipo3.hellocityreport.model.IncidenciaDataSource
+import com.equipo3.hellocityreport.presenter.ListaIncidenciasPresenter
 import com.equipo3.hellocityreport.view.adapter.IncidenciaAdapter
 
 /**
- * Pantalla principal (Home, startDestination del NavGraph).
- * Muestra la lista de incidencias en un RecyclerView. Al tocar una navega al
- * detalle pasándole su id; el botón flotante abre el formulario de nueva incidencia.
+ * Vista de la lista (Inicio, startDestination del NavGraph).
+ *
+ * En MVP la vista es "pasiva": no decide nada. Avisa al Presenter de lo que
+ * hace el usuario y muestra lo que el Presenter le pide (métodos del contrato).
  */
-class ListaIncidenciasFragment : Fragment() {
+class ListaIncidenciasFragment : Fragment(), ListaIncidenciasContract.View {
 
     // Patrón recomendado de ViewBinding en Fragments: la referencia se libera
     // en onDestroyView para evitar fugas de memoria.
     private var _binding: FragmentListaIncidenciasBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var presenter: ListaIncidenciasContract.Presenter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,23 +42,33 @@ class ListaIncidenciasFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = IncidenciaAdapter(IncidenciaDataSource.obtenerTodas()) { incidencia ->
-            // Empaquetamos el id para enviarlo como argumento de navegación.
-            val bundle = Bundle().apply { putInt("incidenciaId", incidencia.id) }
-            findNavController().navigate(R.id.action_lista_to_detalle, bundle)
-        }
+        // La vista crea su Presenter y le entrega el Modelo (repositorio de datos).
+        presenter = ListaIncidenciasPresenter(this, IncidenciaDataSource)
+        presenter.cargarIncidencias()
+    }
 
-        binding.recyclerIncidencias.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerIncidencias.adapter = adapter
-
-        // Boton flotante: abre el formulario de nueva incidencia.
-        binding.fabNuevaIncidencia.setOnClickListener {
-            findNavController().navigate(R.id.action_lista_to_nueva)
+    override fun mostrarIncidencias(incidencias: List<Incidencia>) {
+        binding.txtListaVacia.isVisible = false
+        binding.recyclerIncidencias.isVisible = true
+        binding.recyclerIncidencias.adapter = IncidenciaAdapter(incidencias) { incidencia ->
+            presenter.alSeleccionarIncidencia(incidencia)
         }
+    }
+
+    override fun mostrarListaVacia() {
+        binding.recyclerIncidencias.isVisible = false
+        binding.txtListaVacia.isVisible = true
+    }
+
+    override fun abrirDetalle(incidenciaId: Int) {
+        // Empaquetamos el id para enviarlo como argumento de navegación.
+        val argumentos = Bundle().apply { putInt("incidenciaId", incidenciaId) }
+        findNavController().navigate(R.id.action_lista_to_detalle, argumentos)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        presenter.destruir()
         _binding = null
     }
 }

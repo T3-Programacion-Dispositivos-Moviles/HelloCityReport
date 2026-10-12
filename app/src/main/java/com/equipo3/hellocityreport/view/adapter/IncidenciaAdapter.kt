@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.equipo3.hellocityreport.R
 import com.equipo3.hellocityreport.databinding.ItemIncidenciaBinding
 import com.equipo3.hellocityreport.model.Incidencia
+import com.equipo3.hellocityreport.view.mostrarEstado
 
 /**
  * Adaptador del RecyclerView.
@@ -14,8 +15,8 @@ import com.equipo3.hellocityreport.model.Incidencia
  * cree las vistas de cada fila y rellene esas vistas con los datos.
  *
  * @param incidencias lista de datos a mostrar.
- * @param onClick lambda que se ejecuta al tocar una fila; la usamos para
- *        navegar al detalle (así el adaptador no depende de la navegación).
+ * @param onClick lambda que se ejecuta al tocar una fila; el Fragment la usa para
+ *        avisarle al Presenter (así el adaptador no depende de la navegación).
  */
 class IncidenciaAdapter(
     private val incidencias: List<Incidencia>,
@@ -43,12 +44,13 @@ class IncidenciaAdapter(
     override fun onBindViewHolder(holder: IncidenciaViewHolder, position: Int) {
         val incidencia = incidencias[position]
         holder.binding.txtTitulo.text = incidencia.titulo
-        holder.binding.txtCategoriaEstado.text = holder.binding.root.context.getString(
+        holder.binding.txtUbicacion.text = incidencia.ubicacion
+        holder.binding.chipEstado.mostrarEstado(incidencia.estado)
+        holder.binding.txtCategoriaFecha.text = holder.binding.root.context.getString(
             R.string.incidencia_resumen,
             incidencia.categoria.etiqueta,
-            incidencia.estado.etiqueta
+            incidencia.fecha
         )
-        holder.binding.txtUbicacion.text = incidencia.ubicacion
         holder.binding.root.setOnClickListener { onClick(incidencia) }
     }
 

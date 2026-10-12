@@ -1,3 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Paleta de respaldo (modo claro) generada a partir del color #156082 con el algoritmo de Material Theme Builder.
+     Solo se usa en Android 11 o anterior; en Android 12+ la reemplazan los colores dinámicos. -->
 <resources>
+    <color name="md_primary">#1F6586</color>
+    <color name="md_on_primary">#FFFFFF</color>
+    <color name="md_primary_container">#C5E7FF</color>
+    <color name="md_on_primary_container">#004C6A</color>
+    <color name="md_secondary">#4E616D</color>
+    <color name="md_on_secondary">#FFFFFF</color>
+    <color name="md_secondary_container">#D2E5F4</color>
+    <color name="md_on_secondary_container">#374955</color>
+    <color name="md_tertiary">#61597C</color>
+    <color name="md_on_tertiary">#FFFFFF</color>
+    <color name="md_tertiary_container">#E7DEFF</color>
+    <color name="md_on_tertiary_container">#494263</color>
+    <color name="md_error">#BA1A1A</color>
+    <color name="md_on_error">#FFFFFF</color>
+    <color name="md_error_container">#FFDAD6</color>
+    <color name="md_on_error_container">#93000A</color>
+    <color name="md_background">#F6FAFE</color>
+    <color name="md_on_background">#181C1F</color>
+    <color name="md_surface">#F6FAFE</color>
+    <color name="md_on_surface">#181C1F</color>
+    <color name="md_surface_variant">#DDE3EA</color>
+    <color name="md_on_surface_variant">#41484D</color>
+    <color name="md_outline">#71787E</color>
+    <color name="md_outline_variant">#C1C7CE</color>
+    <color name="md_inverse_surface">#2C3134</color>
+    <color name="md_inverse_on_surface">#EDF1F5</color>
+    <color name="md_inverse_primary">#91CEF4</color>
+    <color name="md_surface_dim">#D7DADF</color>
+    <color name="md_surface_bright">#F6FAFE</color>
+    <color name="md_surface_container_lowest">#FFFFFF</color>
+    <color name="md_surface_container_low">#F0F4F8</color>
+    <color name="md_surface_container">#EBEEF3</color>
+    <color name="md_surface_container_high">#E5E8ED</color>
+    <color name="md_surface_container_highest">#DFE3E7</color>
 </resources>

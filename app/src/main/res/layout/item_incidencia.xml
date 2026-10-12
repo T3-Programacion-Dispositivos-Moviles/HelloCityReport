@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<!-- Tarjeta de una incidencia en la lista (Card elevada de Material 3). -->
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.Material3.CardView.Elevated"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="16dp"
     android:layout_marginVertical="6dp"
     android:clickable="true"
-    android:focusable="true"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="2dp">
+    android:focusable="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,24 +22,43 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceTitleMedium"
-            android:textStyle="bold"
             tools:text="Bache en Av. Instituto Politécnico Nacional" />
-
-        <TextView
-            android:id="@+id/txtCategoriaEstado"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textAppearance="?attr/textAppearanceBodyMedium"
-            tools:text="Bache · Pendiente" />
 
         <TextView
             android:id="@+id/txtUbicacion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:textAppearance="?attr/textAppearanceBodySmall"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:textColor="?attr/colorOnSurfaceVariant"
             tools:text="Av. IPN #123, Lindavista, CDMX" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- Chip de estado: su color se asigna en código según el estado. -->
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipEstado"
+                style="@style/Widget.CityReport.ChipEstado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Pendiente" />
+
+            <TextView
+                android:id="@+id/txtCategoriaFecha"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:textAppearance="?attr/textAppearanceBodySmall"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                tools:text="Bache - 18/09/2026" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

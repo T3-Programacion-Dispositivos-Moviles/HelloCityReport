@@ -5,18 +5,24 @@
     <string name="titulo_lista">Incidencias reportadas</string>
     <string name="titulo_detalle">Detalle de incidencia</string>
     <string name="titulo_nueva">Nueva incidencia</string>
+    <string name="titulo_resumen">Resumen</string>
 
-    <!-- Resumen "Categoría Estado" que se muestra en cada fila de la list -->
+    <!-- Opciones de la barra de navegación inferior -->
+    <string name="menu_inicio">Inicio</string>
+    <string name="menu_reportar">Reportar</string>
+    <string name="menu_resumen">Resumen</string>
+
+    <!-- Lista: "Categoría - Fecha" que se muestra en cada tarjeta -->
     <string name="incidencia_resumen">%1$s - %2$s</string>
+    <string name="lista_vacia">Aún no hay incidencias reportadas.\nUsa la opción Reportar para crear la primera.</string>
 
-    <!-- Etiquetas de la pantalla de detalle (%1$s se sustituye por el valor). -->
-    <string name="detalle_categoria">Categoría: %1$s</string>
-    <string name="detalle_estado">Estado: %1$s</string>
-    <string name="detalle_ubicacion">Ubicación: %1$s</string>
-    <string name="detalle_fecha">Fecha de reporte: %1$s</string>
+    <!-- Pantalla de detalle -->
+    <string name="detalle_ubicacion">Ubicación</string>
+    <string name="detalle_fecha">Fecha de reporte</string>
+    <string name="detalle_descripcion">Descripción</string>
+    <string name="detalle_no_encontrada">No se encontró la incidencia.</string>
 
     <!-- Pantalla de nueva incidencia -->
-    <string name="boton_nueva_incidencia">Nueva incidencia</string>
     <string name="hint_titulo">Título</string>
     <string name="hint_categoria">Categoría</string>
     <string name="hint_ubicacion">Ubicación</string>
@@ -26,4 +32,11 @@
     <string name="error_campo_obligatorio">Este campo es obligatorio</string>
     <string name="error_categoria">Selecciona una categoría</string>
     <string name="mensaje_incidencia_guardada">Incidencia registrada</string>
+
+    <!-- Pantalla de resumen -->
+    <string name="resumen_total">Total de incidencias</string>
+    <string name="resumen_por_estado">Por estado</string>
+    <string name="resumen_por_categoria">Por categoría</string>
+    <!-- Cantidad y porcentaje, por ejemplo "3 (60 %)" -->
+    <string name="resumen_conteo">%1$d (%2$d %%)</string>
 </resources>
