@@ -11,6 +11,21 @@
         <item name="ensureMinTouchTargetSize">false</item>
     </style>
 
+    <!-- Esquinas redondeadas de las fotos (ShapeableImageView). -->
+    <style name="ShapeAppearance.CityReport.Redondeada" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <!-- Botones redondos sobre la vista previa de la cámara y el visor de fotos. -->
+    <style name="Widget.CityReport.BotonCamara" parent="">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:background">@drawable/bg_boton_camara</item>
+        <item name="android:scaleType">center</item>
+        <item name="tint">#FFFFFFFF</item>
+    </style>
+
     <!-- Etiqueta pequeña sobre cada dato (pantalla de detalle). -->
     <style name="TextAppearance.CityReport.Etiqueta" parent="TextAppearance.Material3.LabelMedium">
         <item name="android:textColor">?attr/colorOnSurfaceVariant</item>

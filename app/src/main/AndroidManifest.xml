@@ -2,6 +2,23 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Cámara para la foto de la incidencia (CameraX). No es obligatoria para
+         instalar la app: sin cámara se puede reportar igual, solo sin foto. -->
+    <uses-feature
+        android:name="android.hardware.camera.any"
+        android:required="false" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- Ubicación solo con la app abierta: aproximada y precisa se piden juntas. -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- Notificaciones (Android 13+ también pide permiso en tiempo de ejecución). -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Internet para descargar el mapa y convertir coordenadas en dirección. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".CityReportApp"
         android:allowBackup="true"

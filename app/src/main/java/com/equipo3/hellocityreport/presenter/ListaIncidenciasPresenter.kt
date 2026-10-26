@@ -6,9 +6,6 @@ import com.equipo3.hellocityreport.model.IncidenciaRepository
 
 /**
  * Presenter de la lista. Pide los datos al Modelo y le dice a la Vista qué mostrar.
- *
- * No importa nada de Android: por eso se puede probar con pruebas unitarias
- * normales (ver src/test).
  */
 class ListaIncidenciasPresenter(
     private var view: ListaIncidenciasContract.View?,

@@ -1,20 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Formulario para reportar una incidencia. Toda la validación la decide el Presenter. -->
+<!-- Formulario para reportar una incidencia (wireframe S8, pantallas A y C).
+     Toda la validación la decide el Presenter. -->
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    tools:ignore="Overdraw">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="16dp">
 
+        <!-- ===== Foto (CameraX) ===== -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/seccion_foto"
+            android:textAppearance="?attr/textAppearanceTitleSmall" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginTop="8dp">
+
+            <!-- Sin foto: recuadro punteado que abre la cámara. -->
+            <LinearLayout
+                android:id="@+id/grupoSinFoto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_area_vacia"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_camara"
+                    app:tint="?attr/colorOnSurfaceVariant" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/foto_vacia"
+                    android:textAppearance="?attr/textAppearanceBodyMedium"
+                    android:textColor="?attr/colorOnSurfaceVariant" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnTomarFoto"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/boton_tomar_foto"
+                    app:icon="@drawable/ic_camara" />
+            </LinearLayout>
+
+            <!-- Con foto: la imagen con las acciones Quitar y Repetir. -->
+            <FrameLayout
+                android:id="@+id/grupoConFoto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/ivFoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/descripcion_foto_incidencia"
+                    android:scaleType="centerCrop"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearance.CityReport.Redondeada" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnQuitarFoto"
+                    style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|end"
+                    android:layout_margin="6dp"
+                    android:contentDescription="@string/descripcion_quitar_foto"
+                    app:icon="@drawable/ic_borrar" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRepetirFoto"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="8dp"
+                    android:text="@string/boton_repetir_foto"
+                    app:icon="@drawable/ic_repetir" />
+            </FrameLayout>
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tvErrorFoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/error_foto"
+            android:textAppearance="?attr/textAppearanceBodySmall"
+            android:textColor="?attr/colorError"
+            android:visibility="gone" />
+
+        <!-- ===== Ubicación (Fused Location Provider + mapa) ===== -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/seccion_ubicacion"
+            android:textAppearance="?attr/textAppearanceTitleSmall" />
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.Material3.CardView.Outlined"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="8dp">
+
+            <include
+                android:id="@+id/mapa"
+                layout="@layout/vista_mapa" />
+
+            <!-- Antes de tener ubicación: botón para pedirla. -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnUbicacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/boton_usar_ubicacion"
+                app:icon="@drawable/ic_mi_ubicacion" />
+
+            <!-- Mientras getCurrentLocation() responde. -->
+            <LinearLayout
+                android:id="@+id/grupoBuscando"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/ubicacion_buscando"
+                    android:textAppearance="?attr/textAppearanceBodyMedium" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvCoordenadas"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/ubicacion_pendiente"
+                android:textAppearance="?attr/textAppearanceBodySmall"
+                android:textColor="?attr/colorOnSurfaceVariant" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnActualizarUbicacion"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/boton_actualizar"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <!-- ===== Datos del reporte ===== -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilTitulo"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:hint="@string/hint_titulo">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -24,7 +204,7 @@
                 android:inputType="textCapSentences" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Menu desplegable; sus opciones se cargan desde el enum Categoria. -->
+        <!-- Menú desplegable; sus opciones se cargan desde el enum Categoria. -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilCategoria"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -40,6 +220,7 @@
                 android:inputType="none" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Se llena sola con la dirección que encuentra Geocoder; se puede corregir. -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilUbicacion"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
@@ -52,7 +233,7 @@
                 android:id="@+id/etUbicacion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapSentences" />
+                android:inputType="textCapSentences|textPostalAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -69,7 +250,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="top|start"
                 android:inputType="textMultiLine|textCapSentences"
-                android:minLines="4" />
+                android:minLines="3" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -83,7 +264,7 @@
             android:id="@+id/btnGuardar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:text="@string/boton_guardar" />
 
     </LinearLayout>

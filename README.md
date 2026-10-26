@@ -25,17 +25,24 @@ interfaces (`View` y `Presenter`); el Fragment implementa la vista y el Presente
 
 ```
 app/src/main/java/com/equipo3/hellocityreport/
-├─ model/            # Modelo: Incidencia, enums y repositorio (interfaz + datos en memoria)
+├─ model/            # Modelo: Incidencia, repositorio y proveedor de ubicación (Fused Location Provider)
 ├─ contract/         # Contratos MVP: interfaces View y Presenter de cada pantalla
 ├─ presenter/        # Lógica de cada pantalla (Kotlin puro, sin código de Android)
-├─ view/             # Vista: Fragments, adapter del RecyclerView y chip de estado
-├─ MainActivity.kt   # Top App Bar + BottomNavigationView + NavHostFragment
-└─ CityReportApp.kt  # Activa los colores dinámicos de Material 3
+├─ view/             # Vista: Fragments (incluye cámara con CameraX y foto completa), adapter,
+│                    #   mapa estático, carga de fotos y notificaciones (NotificationCompat)
+├─ MainActivity.kt   # Top App Bar + BottomNavigationView + permiso de notificaciones
+└─ CityReportApp.kt  # Colores dinámicos, MapLibre y canal de notificaciones
 
 app/src/test/java/com/equipo3/hellocityreport/presenter/   # Pruebas unitarias de los Presenters
 ```
 
 Secciones de la barra inferior: **Inicio** (lista y detalle), **Reportar** (formulario) y **Resumen** (conteos por estado y categoría).
+
+Al reportar se toma una foto con **CameraX**, se obtienen las coordenadas con **Fused Location Provider**
+(y la dirección con Geocoder) y se muestra un mapa estático con **MapLibre** y los mapas gratuitos de
+**OpenFreeMap** (no requieren clave de API). Al guardar llega una notificación con la foto; al tocarla se
+abre el detalle. Entre la lista y el detalle, y entre el detalle y la foto completa, hay transiciones de
+elementos compartidos.
 
 ---
 
@@ -43,7 +50,7 @@ Secciones de la barra inferior: **Inicio** (lista y detalle), **Reportar** (form
 
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/T3-Programacion-Dispositivos-Moviles/CityReport.git
+   git clone https://github.com/T3-Programacion-Dispositivos-Moviles/HelloCityReport.git
    ```
 2. Ábrelo en **Android Studio** (última versión estable).
 3. Espera el **Gradle Sync**.

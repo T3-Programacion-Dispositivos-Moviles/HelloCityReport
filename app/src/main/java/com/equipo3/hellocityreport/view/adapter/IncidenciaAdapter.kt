@@ -1,11 +1,15 @@
 package com.equipo3.hellocityreport.view.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.equipo3.hellocityreport.R
 import com.equipo3.hellocityreport.databinding.ItemIncidenciaBinding
 import com.equipo3.hellocityreport.model.Incidencia
+import com.equipo3.hellocityreport.view.Fotos
 import com.equipo3.hellocityreport.view.mostrarEstado
 
 /**
@@ -15,12 +19,13 @@ import com.equipo3.hellocityreport.view.mostrarEstado
  * cree las vistas de cada fila y rellene esas vistas con los datos.
  *
  * @param incidencias lista de datos a mostrar.
- * @param onClick lambda que se ejecuta al tocar una fila; el Fragment la usa para
- *        avisarle al Presenter (así el adaptador no depende de la navegación).
+ * @param onClick lambda que se ejecuta al tocar una fila. Además de la
+ *        incidencia recibe la tarjeta tocada, que es el elemento compartido de
+ *        la transición hacia el detalle.
  */
 class IncidenciaAdapter(
     private val incidencias: List<Incidencia>,
-    private val onClick: (Incidencia) -> Unit
+    private val onClick: (Incidencia, View) -> Unit
 ) : RecyclerView.Adapter<IncidenciaAdapter.IncidenciaViewHolder>() {
 
     /**
@@ -51,7 +56,14 @@ class IncidenciaAdapter(
             incidencia.categoria.etiqueta,
             incidencia.fecha
         )
-        holder.binding.root.setOnClickListener { onClick(incidencia) }
+
+        val ruta = incidencia.fotoRuta
+        holder.binding.ivMiniatura.isVisible = ruta != null
+        holder.binding.ivMiniatura.setImageBitmap(ruta?.let { Fotos.cargar(it, 200) })
+
+        // Nombre único por tarjeta: el detalle usa el mismo para la transición.
+        ViewCompat.setTransitionName(holder.binding.root, "incidencia_${incidencia.id}")
+        holder.binding.root.setOnClickListener { onClick(incidencia, holder.binding.root) }
     }
 
     // Cuántos elementos hay en total.

@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.doOnPreDraw
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.equipo3.hellocityreport.R
 import com.equipo3.hellocityreport.contract.ListaIncidenciasContract
@@ -14,6 +16,7 @@ import com.equipo3.hellocityreport.model.Incidencia
 import com.equipo3.hellocityreport.model.IncidenciaDataSource
 import com.equipo3.hellocityreport.presenter.ListaIncidenciasPresenter
 import com.equipo3.hellocityreport.view.adapter.IncidenciaAdapter
+import com.google.android.material.transition.Hold
 
 /**
  * Vista de la lista (Inicio, startDestination del NavGraph).
@@ -30,6 +33,17 @@ class ListaIncidenciasFragment : Fragment(), ListaIncidenciasContract.View {
 
     private lateinit var presenter: ListaIncidenciasContract.Presenter
 
+    // Tarjeta que tocó el usuario; es el punto de partida de la transición.
+    private var tarjetaSeleccionada: View? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // Hold deja la lista quieta debajo mientras la tarjeta crece hacia el detalle.
+        exitTransition = Hold().apply {
+            duration = resources.getInteger(R.integer.duracion_transicion).toLong()
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,6 +56,11 @@ class ListaIncidenciasFragment : Fragment(), ListaIncidenciasContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Al regresar del detalle hay que esperar a que la lista dibuje sus tarjetas
+        // para que la animación de regreso encuentre la tarjeta de destino.
+        postponeEnterTransition()
+        binding.recyclerIncidencias.doOnPreDraw { startPostponedEnterTransition() }
+
         // La vista crea su Presenter y le entrega el Modelo (repositorio de datos).
         presenter = ListaIncidenciasPresenter(this, IncidenciaDataSource)
         presenter.cargarIncidencias()
@@ -50,7 +69,8 @@ class ListaIncidenciasFragment : Fragment(), ListaIncidenciasContract.View {
     override fun mostrarIncidencias(incidencias: List<Incidencia>) {
         binding.txtListaVacia.isVisible = false
         binding.recyclerIncidencias.isVisible = true
-        binding.recyclerIncidencias.adapter = IncidenciaAdapter(incidencias) { incidencia ->
+        binding.recyclerIncidencias.adapter = IncidenciaAdapter(incidencias) { incidencia, tarjeta ->
+            tarjetaSeleccionada = tarjeta
             presenter.alSeleccionarIncidencia(incidencia)
         }
     }
@@ -63,11 +83,14 @@ class ListaIncidenciasFragment : Fragment(), ListaIncidenciasContract.View {
     override fun abrirDetalle(incidenciaId: Int) {
         // Empaquetamos el id para enviarlo como argumento de navegación.
         val argumentos = Bundle().apply { putInt("incidenciaId", incidenciaId) }
-        findNavController().navigate(R.id.action_lista_to_detalle, argumentos)
+        // La tarjeta viaja como elemento compartido con su transitionName.
+        val extras = tarjetaSeleccionada?.let { FragmentNavigatorExtras(it to "incidencia_$incidenciaId") }
+        findNavController().navigate(R.id.action_lista_to_detalle, argumentos, null, extras)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        tarjetaSeleccionada = null
         presenter.destruir()
         _binding = null
     }

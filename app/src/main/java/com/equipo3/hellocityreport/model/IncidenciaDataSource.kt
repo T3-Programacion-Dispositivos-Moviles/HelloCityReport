@@ -23,7 +23,9 @@ object IncidenciaDataSource : IncidenciaRepository {
             categoria = Categoria.BACHE,
             estado = Estado.PENDIENTE,
             ubicacion = "Av. IPN #123, Lindavista, CDMX",
-            fecha = "18/09/2026"
+            fecha = "18/09/2026",
+            latitud = 19.48770,
+            longitud = -99.13090
         ),
         Incidencia(
             id = 2,
@@ -33,7 +35,9 @@ object IncidenciaDataSource : IncidenciaRepository {
             categoria = Categoria.LUMINARIA,
             estado = Estado.EN_PROCESO,
             ubicacion = "Té 950, Granjas México, Iztacalco",
-            fecha = "17/09/2026"
+            fecha = "17/09/2026",
+            latitud = 19.39550,
+            longitud = -99.09150
         ),
         Incidencia(
             id = 3,
@@ -43,7 +47,9 @@ object IncidenciaDataSource : IncidenciaRepository {
             categoria = Categoria.BASURA,
             estado = Estado.PENDIENTE,
             ubicacion = "Calle Sur 4 y Oriente 3, Agrícola Oriental",
-            fecha = "16/09/2026"
+            fecha = "16/09/2026",
+            latitud = 19.39660,
+            longitud = -99.07450
         ),
         Incidencia(
             id = 4,
@@ -53,7 +59,9 @@ object IncidenciaDataSource : IncidenciaRepository {
             categoria = Categoria.FUGA_AGUA,
             estado = Estado.RESUELTO,
             ubicacion = "Av. Río Churubusco #200, Iztacalco",
-            fecha = "12/09/2026"
+            fecha = "12/09/2026",
+            latitud = 19.38700,
+            longitud = -99.11100
         ),
         Incidencia(
             id = 5,
@@ -63,7 +71,9 @@ object IncidenciaDataSource : IncidenciaRepository {
             categoria = Categoria.OTRO,
             estado = Estado.PENDIENTE,
             ubicacion = "Eje 5 Sur y Calzada de la Viga",
-            fecha = "10/09/2026"
+            fecha = "10/09/2026",
+            latitud = 19.37380,
+            longitud = -99.12360
         )
     )
 
@@ -82,7 +92,10 @@ object IncidenciaDataSource : IncidenciaRepository {
         titulo: String,
         descripcion: String,
         categoria: Categoria,
-        ubicacion: String
+        ubicacion: String,
+        latitud: Double?,
+        longitud: Double?,
+        fotoRuta: String?
     ): Incidencia {
         val nueva = Incidencia(
             id = (incidencias.maxOfOrNull { it.id } ?: 0) + 1,
@@ -91,7 +104,10 @@ object IncidenciaDataSource : IncidenciaRepository {
             categoria = categoria,
             estado = Estado.PENDIENTE,
             ubicacion = ubicacion,
-            fecha = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date())
+            fecha = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date()),
+            latitud = latitud,
+            longitud = longitud,
+            fotoRuta = fotoRuta
         )
         incidencias.add(0, nueva)
         return nueva

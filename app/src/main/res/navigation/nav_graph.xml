@@ -18,7 +18,7 @@
         android:label="@string/titulo_lista"
         tools:layout="@layout/fragment_lista_incidencias">
 
-        <!-- Ruta de la lista hacia el detalle. -->
+        <!-- Ruta de la lista hacia el detalle (con transición de la tarjeta). -->
         <action
             android:id="@+id/action_lista_to_detalle"
             app:destination="@id/detalleIncidenciaFragment" />
@@ -28,7 +28,19 @@
         android:id="@+id/nuevaIncidenciaFragment"
         android:name="com.equipo3.hellocityreport.view.fragments.NuevaIncidenciaFragment"
         android:label="@string/titulo_nueva"
-        tools:layout="@layout/fragment_nueva_incidencia" />
+        tools:layout="@layout/fragment_nueva_incidencia">
+
+        <!-- Ruta del formulario hacia la cámara (CameraX). -->
+        <action
+            android:id="@+id/action_nueva_to_camara"
+            app:destination="@id/camaraFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/camaraFragment"
+        android:name="com.equipo3.hellocityreport.view.fragments.CamaraFragment"
+        android:label="@string/titulo_camara"
+        tools:layout="@layout/fragment_camara" />
 
     <fragment
         android:id="@+id/resumenFragment"
@@ -47,6 +59,25 @@
             android:name="incidenciaId"
             app:argType="integer"
             android:defaultValue="-1" />
+
+        <!-- Ruta del detalle hacia la foto en pantalla completa (con transición de la foto). -->
+        <action
+            android:id="@+id/action_detalle_to_foto"
+            app:destination="@id/fotoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fotoFragment"
+        android:name="com.equipo3.hellocityreport.view.fragments.FotoFragment"
+        android:label="@string/titulo_foto"
+        tools:layout="@layout/fragment_foto">
+
+        <argument
+            android:name="fotoRuta"
+            app:argType="string" />
+        <argument
+            android:name="nombreTransicion"
+            app:argType="string" />
     </fragment>
 
 </navigation>

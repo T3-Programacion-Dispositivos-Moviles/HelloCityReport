@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Mapa estático reutilizable (formulario y detalle): imagen del mapa,
+     círculo de precisión, pin centrado y créditos. Lo controla MapaEstatico.kt. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="MergeRootFrame">
+
+    <ImageView
+        android:id="@+id/ivMapa"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/colorSurfaceContainerHigh"
+        android:contentDescription="@string/descripcion_mapa"
+        android:scaleType="centerCrop" />
+
+    <View
+        android:id="@+id/vPrecision"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_circulo_precision"
+        android:visibility="gone" />
+
+    <!-- translationY sube el pin para que su punta (y no su centro) marque el lugar. -->
+    <ImageView
+        android:id="@+id/ivPin"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_ubicacion"
+        android:translationY="-18dp"
+        android:visibility="gone"
+        app:tint="?attr/colorPrimary" />
+
+    <TextView
+        android:id="@+id/tvAtribucion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:background="@drawable/bg_atribucion"
+        android:paddingHorizontal="6dp"
+        android:paddingVertical="1dp"
+        android:text="@string/atribucion_mapa"
+        android:textColor="#FF333333"
+        android:textSize="11sp"
+        android:visibility="gone" />
+
+</FrameLayout>

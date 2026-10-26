@@ -17,7 +17,12 @@ data class Incidencia(
     val categoria: Categoria,
     val estado: Estado,
     val ubicacion: String,
-    val fecha: String
+    val fecha: String,
+    // Coordenadas del lugar (Fused Location Provider) y ruta de la foto (CameraX).
+    // Son opcionales: si no hay GPS el usuario escribe la dirección a mano.
+    val latitud: Double? = null,
+    val longitud: Double? = null,
+    val fotoRuta: String? = null
 )
 
 /** Tipo de incidencia que puede reportar la ciudadanía. */

@@ -6,6 +6,8 @@
     <string name="titulo_detalle">Detalle de incidencia</string>
     <string name="titulo_nueva">Nueva incidencia</string>
     <string name="titulo_resumen">Resumen</string>
+    <string name="titulo_camara">Cámara</string>
+    <string name="titulo_foto">Foto de la incidencia</string>
 
     <!-- Opciones de la barra de navegación inferior -->
     <string name="menu_inicio">Inicio</string>
@@ -21,17 +23,61 @@
     <string name="detalle_fecha">Fecha de reporte</string>
     <string name="detalle_descripcion">Descripción</string>
     <string name="detalle_no_encontrada">No se encontró la incidencia.</string>
+    <!-- Latitud, longitud -->
+    <string name="detalle_coordenadas">%1$.5f, %2$.5f · Toca el mapa para abrirlo</string>
+    <string name="detalle_sin_app_mapas">No hay una app de mapas instalada</string>
+    <string name="descripcion_foto_incidencia">Foto de la incidencia</string>
+    <string name="descripcion_mapa">Mapa con la ubicación de la incidencia</string>
 
     <!-- Pantalla de nueva incidencia -->
     <string name="hint_titulo">Título</string>
     <string name="hint_categoria">Categoría</string>
-    <string name="hint_ubicacion">Ubicación</string>
+    <string name="hint_ubicacion">Dirección o referencia</string>
     <string name="hint_descripcion">Descripción</string>
     <string name="nota_nueva_incidencia">La incidencia se registra con estado Pendiente y con la fecha de hoy.</string>
     <string name="boton_guardar">Guardar incidencia</string>
     <string name="error_campo_obligatorio">Este campo es obligatorio</string>
     <string name="error_categoria">Selecciona una categoría</string>
     <string name="mensaje_incidencia_guardada">Incidencia registrada</string>
+
+    <!-- Foto (CameraX) -->
+    <string name="seccion_foto">Foto de la incidencia</string>
+    <string name="foto_vacia">Toca para tomar una foto del problema</string>
+    <string name="boton_tomar_foto">Tomar foto</string>
+    <string name="boton_repetir_foto">Repetir</string>
+    <string name="descripcion_quitar_foto">Quitar foto</string>
+    <string name="error_foto">Agrega una foto de la incidencia</string>
+    <string name="permiso_camara_negado">Se necesita la cámara para tomar la foto de la incidencia</string>
+
+    <!-- Ubicación (Fused Location Provider) -->
+    <string name="seccion_ubicacion">Ubicación</string>
+    <string name="boton_usar_ubicacion">Usar ubicación precisa</string>
+    <string name="boton_actualizar">Actualizar</string>
+    <string name="ubicacion_buscando">Obteniendo ubicación…</string>
+    <string name="ubicacion_pendiente">Todavía no se ha obtenido la ubicación</string>
+    <string name="ubicacion_no_disponible">Ubicación no disponible. Escribe la dirección en el campo de abajo.</string>
+    <!-- Latitud, longitud y precisión en metros -->
+    <string name="ubicacion_coordenadas">%1$.5f, %2$.5f · Precisión ±%3$d m</string>
+    <string name="permiso_ubicacion_negado">Sin permiso de ubicación; puedes escribir la dirección a mano</string>
+    <string name="atribucion_mapa">© OpenFreeMap © OpenMapTiles © OpenStreetMap</string>
+    <string name="boton_ajustes">Ajustes</string>
+
+    <!-- Pantalla de cámara -->
+    <string name="descripcion_cerrar">Cerrar</string>
+    <string name="descripcion_disparador">Tomar foto</string>
+    <string name="descripcion_cambiar_camara">Cambiar cámara</string>
+    <string name="flash_auto">Flash automático</string>
+    <string name="flash_encendido">Flash encendido</string>
+    <string name="flash_apagado">Flash apagado</string>
+    <string name="camara_ayuda">Toca para enfocar · Pellizca para acercar</string>
+    <string name="error_guardar_foto">No se pudo guardar la foto</string>
+
+    <!-- Notificaciones -->
+    <string name="canal_reportes_nombre">Reportes</string>
+    <string name="canal_reportes_descripcion">Avisos sobre las incidencias que reportas</string>
+    <string name="notif_titulo_guardada">Incidencia registrada</string>
+    <!-- Categoría y estado -->
+    <string name="notif_resumen">%1$s · Estado: %2$s</string>
 
     <!-- Pantalla de resumen -->
     <string name="resumen_total">Total de incidencias</string>

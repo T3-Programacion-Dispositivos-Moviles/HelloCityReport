@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Cámara a pantalla completa (wireframe S8, pantalla B). -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF000000"
+    tools:ignore="Overdraw">
+
+    <!-- Vista previa en vivo (caso de uso Preview de CameraX). -->
+    <androidx.camera.view.PreviewView
+        android:id="@+id/previewView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Destello blanco breve al tomar la foto. -->
+    <View
+        android:id="@+id/vDestello"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0"
+        android:background="#FFFFFFFF" />
+
+    <LinearLayout
+        android:id="@+id/barraSuperior"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <ImageButton
+            android:id="@+id/btnCerrar"
+            style="@style/Widget.CityReport.BotonCamara"
+            android:contentDescription="@string/descripcion_cerrar"
+            android:src="@drawable/ic_cerrar" />
+
+        <TextView
+            android:id="@+id/tvFlash"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textAppearance="?attr/textAppearanceLabelLarge"
+            android:textColor="#FFFFFFFF" />
+
+        <ImageButton
+            android:id="@+id/btnFlash"
+            style="@style/Widget.CityReport.BotonCamara"
+            android:contentDescription="@string/flash_auto"
+            android:src="@drawable/ic_flash_auto" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/barraInferior"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#99000000"
+        android:orientation="vertical"
+        android:paddingTop="12dp"
+        android:paddingBottom="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/camara_ayuda"
+            android:textAppearance="?attr/textAppearanceBodySmall"
+            android:textColor="#CCFFFFFF" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:paddingHorizontal="32dp">
+
+            <ImageButton
+                android:id="@+id/btnDisparador"
+                android:layout_width="76dp"
+                android:layout_height="76dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_disparador"
+                android:contentDescription="@string/descripcion_disparador" />
+
+            <ImageButton
+                android:id="@+id/btnCambiarCamara"
+                style="@style/Widget.CityReport.BotonCamara"
+                android:layout_gravity="end|center_vertical"
+                android:contentDescription="@string/descripcion_cambiar_camara"
+                android:src="@drawable/ic_cambiar_camara"
+                android:visibility="invisible" />
+        </FrameLayout>
+    </LinearLayout>
+
+</FrameLayout>

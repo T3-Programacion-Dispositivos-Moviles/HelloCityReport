@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Duración en milisegundos de las transiciones entre pantallas. -->
+    <integer name="duracion_transicion">350</integer>
+</resources>
