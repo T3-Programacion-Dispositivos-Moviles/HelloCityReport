@@ -46,6 +46,18 @@ elementos compartidos.
 
 ---
 
+## Modelo de datos (diagrama ER)
+
+Para guardar los datos en el teléfono con **Room** se diseñaron tres tablas: **Usuario**, **Categoría**
+e **Incidencia**. Un usuario reporta muchas incidencias y una categoría clasifica muchas incidencias (1 : N).
+Las preferencias del usuario (tema y notificaciones) se guardarán aparte con **DataStore**.
+
+![Diagrama ER de CityReport](docs/diagrama-er/diagrama_er_cityreport.png)
+
+Diccionario de datos, decisiones de diseño y script SQL: [docs/diagrama-er](docs/diagrama-er/README.md).
+
+---
+
 ## Cómo correr el proyecto
 
 1. Clona el repositorio:

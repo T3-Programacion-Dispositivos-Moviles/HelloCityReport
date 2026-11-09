@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="820" viewBox="0 0 1700 820" font-family="Arial, Helvetica, sans-serif">
+<rect width="1700" height="820" fill="#fff"/>
+<text x="60" y="62" font-size="30" fill="#156082" font-weight="700">CityReport · Diagrama Entidad-Relación</text>
+<text x="60" y="92" font-size="16" fill="#555">Modelo de datos local (SQLite / Room) · Equipo 3 · 5CV50 · UPIICSA-IPN</text>
+<line x1="440" y1="233" x2="660" y2="233" stroke="#333" stroke-width="2"/>
+<line x1="452" y1="223" x2="452" y2="243" stroke="#333" stroke-width="2"/>
+<line x1="460" y1="223" x2="460" y2="243" stroke="#333" stroke-width="2"/>
+<line x1="636" y1="233" x2="660" y2="221" stroke="#333" stroke-width="2"/>
+<line x1="636" y1="233" x2="660" y2="233" stroke="#333" stroke-width="2"/>
+<line x1="636" y1="233" x2="660" y2="245" stroke="#333" stroke-width="2"/>
+<circle cx="627" cy="233" r="6" fill="#fff" stroke="#333" stroke-width="2"/>
+<text x="550" y="215" font-size="15" fill="#156082" font-weight="700" text-anchor="middle" font-style="italic">reporta</text>
+<text x="550" y="263" font-size="14" fill="#222" font-weight="700" text-anchor="middle">1 : N</text>
+<text x="550" y="281" font-size="11" fill="#555" text-anchor="middle">ON DELETE CASCADE</text>
+<text x="456" y="215" font-size="13" fill="#555" text-anchor="middle">1</text>
+<text x="638" y="215" font-size="13" fill="#555" text-anchor="middle">0..N</text>
+<line x1="1260" y1="267" x2="1040" y2="267" stroke="#333" stroke-width="2"/>
+<line x1="1248" y1="257" x2="1248" y2="277" stroke="#333" stroke-width="2"/>
+<line x1="1240" y1="257" x2="1240" y2="277" stroke="#333" stroke-width="2"/>
+<line x1="1064" y1="267" x2="1040" y2="255" stroke="#333" stroke-width="2"/>
+<line x1="1064" y1="267" x2="1040" y2="267" stroke="#333" stroke-width="2"/>
+<line x1="1064" y1="267" x2="1040" y2="279" stroke="#333" stroke-width="2"/>
+<circle cx="1073" cy="267" r="6" fill="#fff" stroke="#333" stroke-width="2"/>
+<text x="1150" y="249" font-size="15" fill="#156082" font-weight="700" text-anchor="middle" font-style="italic">clasifica</text>
+<text x="1150" y="297" font-size="14" fill="#222" font-weight="700" text-anchor="middle">1 : N</text>
+<text x="1150" y="315" font-size="11" fill="#555" text-anchor="middle">ON DELETE RESTRICT</text>
+<text x="1244" y="249" font-size="13" fill="#555" text-anchor="middle">1</text>
+<text x="1062" y="249" font-size="13" fill="#555" text-anchor="middle">0..N</text>
+<rect x="64" y="169" width="380" height="256" rx="10" fill="#000" opacity="0.08"/>
+<rect x="60" y="164" width="380" height="256" rx="10" fill="#fff" stroke="#156082" stroke-width="2"/>
+<path d="M60 216 V174 a10 10 0 0 1 10 -10 H430 a10 10 0 0 1 10 10 V216 Z" fill="#156082"/>
+<text x="250" y="197" font-size="20" fill="#fff" font-weight="700" text-anchor="middle">USUARIO</text>
+<rect x="62" y="216" width="376" height="34" fill="#E3EEF3"/>
+<rect x="72" y="224" width="34" height="19" rx="4" fill="#B7791F"/>
+<text x="89" y="238" font-size="12" fill="#fff" font-weight="700" text-anchor="middle">PK</text>
+<text x="118" y="238" font-size="15" fill="#222" font-weight="700">id_usuario</text>
+<text x="280" y="238" font-size="14" fill="#555">INTEGER</text>
+<text x="426" y="238" font-size="12" fill="#555" text-anchor="end">NOT NULL</text>
+<line x1="60" y1="250" x2="440" y2="250" stroke="#D5DEE3"/>
+<text x="118" y="272" font-size="15" fill="#222">nombre</text>
+<text x="280" y="272" font-size="14" fill="#555">TEXT</text>
+<text x="426" y="272" font-size="12" fill="#555" text-anchor="end">NOT NULL</text>
+<line x1="60" y1="284" x2="440" y2="284" stroke="#D5DEE3"/>
+<rect x="72" y="292" width="34" height="19" rx="4" fill="#6B6B6B"/>
+<text x="89" y="306" font-size="12" fill="#fff" font-weight="700" text-anchor="middle">UQ</text>
+<text x="118" y="306" font-size="15" fill="#222">correo</text>
+<text x="280" y="306" font-size="14" fill="#555">TEXT</text>
+<text x="426" y="306" font-size="12" fill="#555" text-anchor="end">NOT NULL</text>
+<line x1="60" y1="318" x2="440" y2="318" stroke="#D5DEE3"/>
+<text x="118" y="340" font-size="15" fill="#222">telefono</text>
+<text x="280" y="340" font-size="14" fill="#555">TEXT</text>
+<text x="426" y="340" font-size="12" fill="#999" text-anchor="end">NULL</text>
+<line x1="60" y1="352" x2="440" y2="352" stroke="#D5DEE3"/>
+<text x="118" y="374" font-size="15" fill="#222">rol</text>
+<text x="280" y="374" font-size="14" fill="#555">TEXT</text>
+<text x="426" y="374" font-size="12" fill="#555" text-anchor="end">NOT NULL</text>
+<line x1="60" y1="386" x2="440" y2="386" stroke="#D5DEE3"/>
+<text x="118" y="408" font-size="15" fill="#222">fecha_registro</text>
+<text x="280" y="408" font-size="14" fill="#555">INTEGER</text>
+<text x="426" y="408" font-size="12" fill="#555" text-anchor="end">NOT NULL</text>
+<rect x="664" y="135" width="380" height="426" rx="10" fill="#000" opacity="0.08"/>
+<rect x="660" y="130" width="380" height="426" rx="10" fill="#fff" stroke="#156082" stroke-width="2"/>
+<path d="M660 182 V140 a10 10 0 0 1 10 -10 H1030 a10 10 0 0 1 10 10 V182 Z" fill="#156082"/>
+<text x="850" y="163" font-size="20" fill="#fff" font-weight="700" text-anchor="middle">INCIDENCIA</text>
+<rect x="662" y="182" width="376" height="34" fill="#E3EEF3"/>
+<rect x="672" y="190" width="34" height="19" rx="4" fill="#B7791F"/>
+<text x="689" y="204" font-size="12" fill="#fff" font-weight="700" text-anchor="middle">PK</text>
+<text x="718" y="204" font-size="15" fill="#222" font-weight="700">id_incidencia</text>
+<text x="880" y="204" font-size="14" fill="#555">INTEGER</text>
+<text x="1026" y="204" font-size="12" fill="#555" text-anchor="end">NOT NULL</text>
+<rect x="662" y="216" width="376" height="34" fill="#E3EEF3"/>
+<line x1="660" y1="216" x2="1040" y2="216" stroke="#D5DEE3"/>
+<rect x="672" y="224" width="34" height="19" rx="4" fill="#156082"/>
+<text x="689" y="238" font-size="12" fill="#fff" font-weight="700" text-anchor="middle">FK</text>
+<text x="718" y="238" font-size="15" fill="#222">id_usuario</text>
+<text x="880" y="238" font-size="14" fill="#555">INTEGER</text>
+<text x="1026" y="238" font-size="12" fill="#555" text-anchor="end">NOT NULL</text>
+<rect x="662" y="250" width="376" height="34" fill="#E3EEF3"/>
+<line x1="660" y1="250" x2="1040" y2="250" stroke="#D5DEE3"/>
+<rect x="672" y="258" width="34" height="19" rx="4" fill="#156082"/>
+<text x="689" y="272" font-size="12" fill="#fff" font-weight="700" text-anchor="middle">FK</text>
+<text x="718" y="272" font-size="15" fill="#222">id_categoria</text>
+<text x="880" y="272" font-size="14" fill="#555">INTEGER</text>
+<text x="1026" y="272" font-size="12" fill="#555" text-anchor="end">NOT NULL</text>
+<line x1="660" y1="284" x2="1040" y2="284" stroke="#D5DEE3"/>
+<text x="718" y="306" font-size="15" fill="#222">titulo</text>
+<text x="880" y="306" font-size="14" fill="#555">TEXT</text>
+<text x="1026" y="306" font-size="12" fill="#555" text-anchor="end">NOT NULL</text>
+<line x1="660" y1="318" x2="1040" y2="318" stroke="#D5DEE3"/>
+<text x="718" y="340" font-size="15" fill="#222">descripcion</text>
+<text x="880" y="340" font-size="14" fill="#555">TEXT</text>
+<text x="1026" y="340" font-size="12" fill="#555" text-anchor="end">NOT NULL</text>
+<line x1="660" y1="352" x2="1040" y2="352" stroke="#D5DEE3"/>
+<text x="718" y="374" font-size="15" fill="#222">estado</text>
+<text x="880" y="374" font-size="14" fill="#555">TEXT</text>
+<text x="1026" y="374" font-size="12" fill="#555" text-anchor="end">NOT NULL</text>
+<line x1="660" y1="386" x2="1040" y2="386" stroke="#D5DEE3"/>
+<text x="718" y="408" font-size="15" fill="#222">ubicacion</text>
+<text x="880" y="408" font-size="14" fill="#555">TEXT</text>
+<text x="1026" y="408" font-size="12" fill="#555" text-anchor="end">NOT NULL</text>
+<line x1="660" y1="420" x2="1040" y2="420" stroke="#D5DEE3"/>
+<text x="718" y="442" font-size="15" fill="#222">latitud</text>
+<text x="880" y="442" font-size="14" fill="#555">REAL</text>
+<text x="1026" y="442" font-size="12" fill="#999" text-anchor="end">NULL</text>
+<line x1="660" y1="454" x2="1040" y2="454" stroke="#D5DEE3"/>
+<text x="718" y="476" font-size="15" fill="#222">longitud</text>
+<text x="880" y="476" font-size="14" fill="#555">REAL</text>
+<text x="1026" y="476" font-size="12" fill="#999" text-anchor="end">NULL</text>
+<line x1="660" y1="488" x2="1040" y2="488" stroke="#D5DEE3"/>
+<text x="718" y="510" font-size="15" fill="#222">foto_ruta</text>
+<text x="880" y="510" font-size="14" fill="#555">TEXT</text>
+<text x="1026" y="510" font-size="12" fill="#999" text-anchor="end">NULL</text>
+<line x1="660" y1="522" x2="1040" y2="522" stroke="#D5DEE3"/>
+<text x="718" y="544" font-size="15" fill="#222">fecha_creacion</text>
+<text x="880" y="544" font-size="14" fill="#555">INTEGER</text>
+<text x="1026" y="544" font-size="12" fill="#555" text-anchor="end">NOT NULL</text>
+<rect x="1264" y="203" width="380" height="222" rx="10" fill="#000" opacity="0.08"/>
+<rect x="1260" y="198" width="380" height="222" rx="10" fill="#fff" stroke="#156082" stroke-width="2"/>
+<path d="M1260 250 V208 a10 10 0 0 1 10 -10 H1630 a10 10 0 0 1 10 10 V250 Z" fill="#156082"/>
+<text x="1450" y="231" font-size="20" fill="#fff" font-weight="700" text-anchor="middle">CATEGORIA</text>
+<rect x="1262" y="250" width="376" height="34" fill="#E3EEF3"/>
+<rect x="1272" y="258" width="34" height="19" rx="4" fill="#B7791F"/>
+<text x="1289" y="272" font-size="12" fill="#fff" font-weight="700" text-anchor="middle">PK</text>
+<text x="1318" y="272" font-size="15" fill="#222" font-weight="700">id_categoria</text>
+<text x="1480" y="272" font-size="14" fill="#555">INTEGER</text>
+<text x="1626" y="272" font-size="12" fill="#555" text-anchor="end">NOT NULL</text>
+<line x1="1260" y1="284" x2="1640" y2="284" stroke="#D5DEE3"/>
+<rect x="1272" y="292" width="34" height="19" rx="4" fill="#6B6B6B"/>
+<text x="1289" y="306" font-size="12" fill="#fff" font-weight="700" text-anchor="middle">UQ</text>
+<text x="1318" y="306" font-size="15" fill="#222">clave</text>
+<text x="1480" y="306" font-size="14" fill="#555">TEXT</text>
+<text x="1626" y="306" font-size="12" fill="#555" text-anchor="end">NOT NULL</text>
+<line x1="1260" y1="318" x2="1640" y2="318" stroke="#D5DEE3"/>
+<rect x="1272" y="326" width="34" height="19" rx="4" fill="#6B6B6B"/>
+<text x="1289" y="340" font-size="12" fill="#fff" font-weight="700" text-anchor="middle">UQ</text>
+<text x="1318" y="340" font-size="15" fill="#222">nombre</text>
+<text x="1480" y="340" font-size="14" fill="#555">TEXT</text>
+<text x="1626" y="340" font-size="12" fill="#555" text-anchor="end">NOT NULL</text>
+<line x1="1260" y1="352" x2="1640" y2="352" stroke="#D5DEE3"/>
+<text x="1318" y="374" font-size="15" fill="#222">descripcion</text>
+<text x="1480" y="374" font-size="14" fill="#555">TEXT</text>
+<text x="1626" y="374" font-size="12" fill="#999" text-anchor="end">NULL</text>
+<line x1="1260" y1="386" x2="1640" y2="386" stroke="#D5DEE3"/>
+<text x="1318" y="408" font-size="15" fill="#222">icono</text>
+<text x="1480" y="408" font-size="14" fill="#555">TEXT</text>
+<text x="1626" y="408" font-size="12" fill="#999" text-anchor="end">NULL</text>
+<rect x="60" y="600" width="1580" height="190" rx="10" fill="#F7F9FA" stroke="#D5DEE3"/>
+<text x="84" y="632" font-size="16" fill="#156082" font-weight="700">Simbología</text>
+<rect x="84" y="650" width="34" height="19" rx="4" fill="#B7791F"/>
+<text x="101" y="664" font-size="12" fill="#fff" font-weight="700" text-anchor="middle">PK</text>
+<text x="130" y="665" font-size="14" fill="#222">Llave primaria</text>
+<rect x="84" y="680" width="34" height="19" rx="4" fill="#156082"/>
+<text x="101" y="694" font-size="12" fill="#fff" font-weight="700" text-anchor="middle">FK</text>
+<text x="130" y="695" font-size="14" fill="#222">Llave foránea</text>
+<rect x="84" y="710" width="34" height="19" rx="4" fill="#6B6B6B"/>
+<text x="101" y="724" font-size="12" fill="#fff" font-weight="700" text-anchor="middle">UQ</text>
+<text x="130" y="725" font-size="14" fill="#222">Valor único</text>
+<line x1="300" y1="662" x2="370" y2="662" stroke="#333" stroke-width="2"/>
+<line x1="352" y1="653" x2="352" y2="671" stroke="#333" stroke-width="2"/>
+<line x1="360" y1="653" x2="360" y2="671" stroke="#333" stroke-width="2"/>
+<text x="384" y="667" font-size="14" fill="#222">Uno y solo uno (obligatorio)</text>
+<line x1="300" y1="706" x2="370" y2="706" stroke="#333" stroke-width="2"/>
+<line x1="348" y1="706" x2="370" y2="695" stroke="#333" stroke-width="2"/>
+<line x1="348" y1="706" x2="370" y2="706" stroke="#333" stroke-width="2"/>
+<line x1="348" y1="706" x2="370" y2="717" stroke="#333" stroke-width="2"/>
+<circle cx="339" cy="706" r="6" fill="#F7F9FA" stroke="#333" stroke-width="2"/>
+<text x="384" y="711" font-size="14" fill="#222">Cero o muchos</text>
+<text x="760" y="632" font-size="16" fill="#156082" font-weight="700">Reglas del modelo</text>
+<text x="760" y="660" font-size="13.5" fill="#222">• Un usuario reporta cero o muchas incidencias; cada incidencia pertenece a un solo usuario.</text>
+<text x="760" y="686" font-size="13.5" fill="#222">• Una categoría clasifica cero o muchas incidencias; cada incidencia tiene una sola categoría.</text>
+<text x="760" y="712" font-size="13.5" fill="#222">• estado: PENDIENTE | EN_PROCESO | RESUELTO (enum Estado).  rol: CIUDADANO | ADMIN.</text>
+<text x="760" y="738" font-size="13.5" fill="#222">• Las fechas se guardan como INTEGER (milisegundos desde 1970).</text>
+<text x="760" y="764" font-size="13.5" fill="#222">• CATEGORIA se precarga con 5 registros: BACHE, LUMINARIA, BASURA, FUGA_AGUA y OTRO.</text>
+</svg>
