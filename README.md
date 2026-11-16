@@ -25,18 +25,22 @@ interfaces (`View` y `Presenter`); el Fragment implementa la vista y el Presente
 
 ```
 app/src/main/java/com/equipo3/hellocityreport/
-├─ model/            # Modelo: Incidencia, repositorio y proveedor de ubicación (Fused Location Provider)
+├─ model/            # Modelo: Incidencia, repositorios (Room y DataStore) y proveedor de ubicación
+├─ model/db/         # Room: entidades, DAOs y CityReportDatabase (con datos iniciales)
 ├─ contract/         # Contratos MVP: interfaces View y Presenter de cada pantalla
 ├─ presenter/        # Lógica de cada pantalla (Kotlin puro, sin código de Android)
 ├─ view/             # Vista: Fragments (incluye cámara con CameraX y foto completa), adapter,
 │                    #   mapa estático, carga de fotos y notificaciones (NotificationCompat)
-├─ MainActivity.kt   # Top App Bar + BottomNavigationView + permiso de notificaciones
-└─ CityReportApp.kt  # Colores dinámicos, MapLibre y canal de notificaciones
+├─ MainActivity.kt   # Top App Bar (con Ajustes) + BottomNavigationView + permiso de notificaciones
+└─ CityReportApp.kt  # Crea la base y las preferencias, aplica el tema, MapLibre y canal de notificaciones
 
-app/src/test/java/com/equipo3/hellocityreport/presenter/   # Pruebas unitarias de los Presenters
+app/schemas/                                                    # Esquema de la base exportado por Room (JSON)
+app/src/test/java/com/equipo3/hellocityreport/presenter/       # Pruebas unitarias de los Presenters
+app/src/androidTest/java/com/equipo3/hellocityreport/model/db/ # Pruebas de Room en el dispositivo
 ```
 
 Secciones de la barra inferior: **Inicio** (lista y detalle), **Reportar** (formulario) y **Resumen** (conteos por estado y categoría).
+El engrane de la barra superior abre **Ajustes** (tema y avisos).
 
 Al reportar se toma una foto con **CameraX**, se obtienen las coordenadas con **Fused Location Provider**
 (y la dirección con Geocoder) y se muestra un mapa estático con **MapLibre** y los mapas gratuitos de
@@ -44,13 +48,21 @@ Al reportar se toma una foto con **CameraX**, se obtienen las coordenadas con **
 abre el detalle. Entre la lista y el detalle, y entre el detalle y la foto completa, hay transiciones de
 elementos compartidos.
 
+### Persistencia local (sin internet)
+
+- **Room** guarda las incidencias en la base `cityreport.db` siguiendo el diagrama ER (tablas `usuario`,
+  `categoria` e `incidencia`). La lista y el resumen se actualizan solos porque los DAOs regresan `Flow`.
+  Al instalar, la base se crea con las categorías, un usuario local y cinco incidencias de ejemplo.
+- **DataStore** (Preferences) guarda el tema (Claro, Oscuro o Sistema) y si se envía un aviso al guardar un reporte.
+- Todo funciona en modo avión; sin conexión solo faltan el mapa (se muestra un aviso) y la dirección automática.
+
 ---
 
 ## Modelo de datos (diagrama ER)
 
 Para guardar los datos en el teléfono con **Room** se diseñaron tres tablas: **Usuario**, **Categoría**
 e **Incidencia**. Un usuario reporta muchas incidencias y una categoría clasifica muchas incidencias (1 : N).
-Las preferencias del usuario (tema y notificaciones) se guardarán aparte con **DataStore**.
+Las preferencias del usuario (tema y notificaciones) se guardan aparte con **DataStore**.
 
 ![Diagrama ER de CityReport](docs/diagrama-er/diagrama_er_cityreport.png)
 
@@ -69,5 +81,6 @@ Diccionario de datos, decisiones de diseño y script SQL: [docs/diagrama-er](doc
 4. Selecciona un emulador (AVD, API 30+) o un dispositivo físico con **depuración USB** activada.
 5. Pulsa **Run**.
 6. Para correr las pruebas unitarias de los Presenters: `./gradlew test`.
+7. Para correr las pruebas de Room en un emulador o teléfono conectado: `./gradlew connectedAndroidTest`.
 
 ---

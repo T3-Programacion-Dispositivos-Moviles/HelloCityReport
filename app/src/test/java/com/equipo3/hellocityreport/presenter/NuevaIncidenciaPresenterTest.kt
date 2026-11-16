@@ -44,7 +44,7 @@ class NuevaIncidenciaPresenterTest {
     private val vista = VistaFalsa()
     private val repositorio = FakeIncidenciaRepository()
     private val gps = FakeProveedorUbicacion(upiicsa)
-    private val presenter = NuevaIncidenciaPresenter(repositorio, gps).also { it.adjuntarVista(vista) }
+    private val presenter = NuevaIncidenciaPresenter(repositorio, gps, alInstante()).also { it.adjuntarVista(vista) }
 
     @Test
     fun `al iniciar muestra las categorias del enum`() {

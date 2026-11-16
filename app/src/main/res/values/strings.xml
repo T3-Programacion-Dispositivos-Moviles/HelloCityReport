@@ -8,6 +8,7 @@
     <string name="titulo_resumen">Resumen</string>
     <string name="titulo_camara">Cámara</string>
     <string name="titulo_foto">Foto de la incidencia</string>
+    <string name="titulo_ajustes">Ajustes</string>
 
     <!-- Opciones de la barra de navegación inferior -->
     <string name="menu_inicio">Inicio</string>
@@ -85,4 +86,18 @@
     <string name="resumen_por_categoria">Por categoría</string>
     <!-- Cantidad y porcentaje, por ejemplo "3 (60 %)" -->
     <string name="resumen_conteo">%1$d (%2$d %%)</string>
+
+    <!-- Ajustes (DataStore) -->
+    <string name="ajustes_apariencia">Apariencia</string>
+    <string name="ajustes_tema">Tema</string>
+    <string name="ajustes_tema_ayuda">Sistema usa el mismo modo que tu teléfono.</string>
+    <string name="tema_claro">Claro</string>
+    <string name="tema_oscuro">Oscuro</string>
+    <string name="tema_sistema">Sistema</string>
+    <string name="ajustes_notificaciones">Notificaciones</string>
+    <string name="ajustes_avisos">Avisos de reportes</string>
+    <string name="ajustes_avisos_ayuda">Recibe una notificación con la foto cada vez que guardas un reporte.</string>
+    <string name="ajustes_permiso_negado">Sin permiso de notificaciones no se pueden activar los avisos</string>
+    <string name="ajustes_almacenamiento">Tus reportes y ajustes se guardan en el teléfono y funcionan sin conexión a internet.</string>
+    <string name="mapa_sin_conexion">Mapa no disponible sin conexión</string>
 </resources>

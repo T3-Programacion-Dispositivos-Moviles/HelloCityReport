@@ -23,7 +23,7 @@ class DetalleIncidenciaPresenterTest {
     @Test
     fun `si el id existe muestra la incidencia`() {
         val vista = VistaFalsa()
-        DetalleIncidenciaPresenter(vista, repositorio).cargarIncidencia(2)
+        DetalleIncidenciaPresenter(vista, repositorio, alInstante()).cargarIncidencia(2)
 
         assertEquals(2, vista.mostrada?.id)
         assertFalse(vista.noEncontrada)
@@ -32,7 +32,7 @@ class DetalleIncidenciaPresenterTest {
     @Test
     fun `si el id no existe muestra el mensaje de no encontrada`() {
         val vista = VistaFalsa()
-        DetalleIncidenciaPresenter(vista, repositorio).cargarIncidencia(-1)
+        DetalleIncidenciaPresenter(vista, repositorio, alInstante()).cargarIncidencia(-1)
 
         assertTrue(vista.noEncontrada)
         assertNull(vista.mostrada)

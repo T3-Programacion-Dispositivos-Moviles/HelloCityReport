@@ -6,21 +6,26 @@ import com.equipo3.hellocityreport.model.Incidencia
 import com.equipo3.hellocityreport.model.IncidenciaRepository
 import com.equipo3.hellocityreport.model.ProveedorUbicacion
 import com.equipo3.hellocityreport.model.Ubicacion
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 
 /**
- * Repositorio falso para las pruebas: guarda todo en una lista y permite revisar
+ * Repositorio falso para las pruebas: guarda todo en memoria y permite revisar
  * qué se agregó. Funciona porque los Presenters dependen de la interfaz
- * IncidenciaRepository y no de IncidenciaDataSource.
+ * IncidenciaRepository y no de Room. Igual que Room, avisa cada cambio con un Flow.
  */
 class FakeIncidenciaRepository(iniciales: List<Incidencia> = emptyList()) : IncidenciaRepository {
 
-    val incidencias = iniciales.toMutableList()
+    private val datos = MutableStateFlow(iniciales)
+    val incidencias: List<Incidencia> get() = datos.value
 
-    override fun obtenerTodas(): List<Incidencia> = incidencias.toList()
+    override fun observarTodas(): Flow<List<Incidencia>> = datos
 
-    override fun buscarPorId(id: Int): Incidencia? = incidencias.find { it.id == id }
+    override suspend fun buscarPorId(id: Int): Incidencia? = datos.value.find { it.id == id }
 
-    override fun agregar(
+    override suspend fun agregar(
         titulo: String,
         descripcion: String,
         categoria: Categoria,
@@ -36,7 +41,7 @@ class FakeIncidenciaRepository(iniciales: List<Incidencia> = emptyList()) : Inci
             longitud = longitud,
             fotoRuta = fotoRuta
         )
-        incidencias.add(nueva)
+        datos.value = datos.value + nueva
         return nueva
     }
 }
@@ -62,3 +67,9 @@ fun incidencia(
     categoria: Categoria = Categoria.BACHE,
     estado: Estado = Estado.PENDIENTE
 ) = Incidencia(id, titulo, "Descripción", categoria, estado, "Ubicación", "01/10/2026")
+
+/**
+ * Scope para pruebas: Dispatchers.Unconfined ejecuta cada corrutina al instante,
+ * así las aserciones ven el resultado sin esperar.
+ */
+fun alInstante() = CoroutineScope(Dispatchers.Unconfined)

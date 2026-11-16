@@ -6,12 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.equipo3.hellocityreport.R
+import com.equipo3.hellocityreport.app
 import com.equipo3.hellocityreport.contract.ResumenContract
 import com.equipo3.hellocityreport.contract.ResumenContract.Conteo
 import com.equipo3.hellocityreport.databinding.FragmentResumenBinding
 import com.equipo3.hellocityreport.databinding.ItemConteoBinding
-import com.equipo3.hellocityreport.model.IncidenciaDataSource
 import com.equipo3.hellocityreport.presenter.ResumenPresenter
 import java.text.NumberFormat
 
@@ -38,7 +39,7 @@ class ResumenFragment : Fragment(), ResumenContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        presenter = ResumenPresenter(this, IncidenciaDataSource)
+        presenter = ResumenPresenter(this, app.repositorio, viewLifecycleOwner.lifecycleScope)
         presenter.cargarResumen()
     }
 

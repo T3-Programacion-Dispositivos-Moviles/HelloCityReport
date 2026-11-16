@@ -10,15 +10,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
+import androidx.core.view.doOnPreDraw
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.equipo3.hellocityreport.R
+import com.equipo3.hellocityreport.app
 import com.equipo3.hellocityreport.contract.DetalleIncidenciaContract
 import com.equipo3.hellocityreport.databinding.FragmentDetalleIncidenciaBinding
 import com.equipo3.hellocityreport.model.Incidencia
-import com.equipo3.hellocityreport.model.IncidenciaDataSource
 import com.equipo3.hellocityreport.presenter.DetalleIncidenciaPresenter
 import com.equipo3.hellocityreport.view.MapaEstatico
 import com.equipo3.hellocityreport.view.mostrarEstado
@@ -72,8 +74,11 @@ class DetalleIncidenciaFragment : Fragment(), DetalleIncidenciaContract.View {
         (sharedElementEnterTransition as? MaterialContainerTransform)
             ?.setAllContainerColors(MaterialColors.getColor(view, com.google.android.material.R.attr.colorSurface))
 
+        // Los datos llegan de la base un instante después: la animación espera a que
+        // la pantalla ya tenga la incidencia (también al regresar de la foto completa).
+        postponeEnterTransition()
         mapa = MapaEstatico(binding.mapaDetalle)
-        presenter = DetalleIncidenciaPresenter(this, IncidenciaDataSource)
+        presenter = DetalleIncidenciaPresenter(this, app.repositorio, viewLifecycleOwner.lifecycleScope)
         presenter.cargarIncidencia(incidenciaId)
     }
 
@@ -104,11 +109,13 @@ class DetalleIncidenciaFragment : Fragment(), DetalleIncidenciaContract.View {
             mapa?.mostrar(latitud, longitud)
             binding.contenedorMapaDetalle.setOnClickListener { abrirEnMapas(latitud, longitud, incidencia.titulo) }
         }
+        binding.root.doOnPreDraw { startPostponedEnterTransition() }
     }
 
     override fun mostrarNoEncontrada() {
         binding.contenidoDetalle.isVisible = false
         binding.txtNoEncontrada.isVisible = true
+        startPostponedEnterTransition()
     }
 
     // La foto viaja a la pantalla completa como elemento compartido.

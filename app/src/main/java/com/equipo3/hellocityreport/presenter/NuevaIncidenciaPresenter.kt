@@ -6,16 +6,21 @@ import com.equipo3.hellocityreport.model.Categoria
 import com.equipo3.hellocityreport.model.IncidenciaRepository
 import com.equipo3.hellocityreport.model.ProveedorUbicacion
 import com.equipo3.hellocityreport.model.Ubicacion
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 /**
- * Presenter del formulario.
+ * Presenter del formulario. [scope] vive lo mismo que el Fragment, no que su vista,
+ * para que el guardado no se cancele si la vista se recrea.
  */
 class NuevaIncidenciaPresenter(
     private val repositorio: IncidenciaRepository,
-    private val proveedorUbicacion: ProveedorUbicacion
+    private val proveedorUbicacion: ProveedorUbicacion,
+    private val scope: CoroutineScope
 ) : NuevaIncidenciaContract.Presenter {
 
     private var view: NuevaIncidenciaContract.View? = null
+    private var guardando = false
 
     override var fotoRuta: String? = null
         private set
@@ -80,24 +85,32 @@ class NuevaIncidenciaPresenter(
         }
         view?.mostrarErrores(camposConError)
 
-        // Si falta algún dato no se guarda.
-        if (foto == null || categoriaElegida == null || camposConError.isNotEmpty()) return
+        // Si falta algún dato no se guarda; tampoco si ya se está guardando (doble toque).
+        if (foto == null || categoriaElegida == null || camposConError.isNotEmpty() || guardando) return
 
         val gps = this.ubicacion
-        val nueva = repositorio.agregar(
-            titulo = titulo.trim(),
-            descripcion = descripcion.trim(),
-            categoria = categoriaElegida,
-            ubicacion = ubicacion.trim(),
-            latitud = gps?.latitud,
-            longitud = gps?.longitud,
-            fotoRuta = foto
-        )
-        fotoRuta = null
-        this.ubicacion = null
-        view?.mostrarIncidenciaGuardada()
-        view?.notificarIncidenciaGuardada(nueva)
-        view?.regresarALista()
+        guardando = true
+        // La escritura en la base corre fuera del hilo principal.
+        scope.launch {
+            try {
+                val nueva = repositorio.agregar(
+                    titulo = titulo.trim(),
+                    descripcion = descripcion.trim(),
+                    categoria = categoriaElegida,
+                    ubicacion = ubicacion.trim(),
+                    latitud = gps?.latitud,
+                    longitud = gps?.longitud,
+                    fotoRuta = foto
+                )
+                fotoRuta = null
+                this@NuevaIncidenciaPresenter.ubicacion = null
+                view?.mostrarIncidenciaGuardada()
+                view?.notificarIncidenciaGuardada(nueva)
+                view?.regresarALista()
+            } finally {
+                guardando = false
+            }
+        }
     }
 
     override fun destruir() {

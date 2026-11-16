@@ -80,4 +80,11 @@
             app:argType="string" />
     </fragment>
 
+    <!-- Preferencias del usuario (tema y notificaciones) guardadas con DataStore. -->
+    <fragment
+        android:id="@+id/ajustesFragment"
+        android:name="com.equipo3.hellocityreport.view.fragments.AjustesFragment"
+        android:label="@string/titulo_ajustes"
+        tools:layout="@layout/fragment_ajustes" />
+
 </navigation>

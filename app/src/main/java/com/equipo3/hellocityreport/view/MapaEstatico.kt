@@ -37,8 +37,10 @@ class MapaEstatico(private val vista: VistaMapaBinding) {
                 it.start({ captura ->
                     vista.ivMapa.setImageBitmap(captura.bitmap)
                     vista.tvAtribucion.isVisible = true
+                    vista.tvSinConexion.isVisible = false
                 }) {
-                    // Sin internet no hay mapa: se queda el fondo con el pin.
+                    // Sin internet no hay mapa: se queda el fondo con el pin y el aviso.
+                    vista.tvSinConexion.isVisible = true
                 }
             }
             vista.ivPin.isVisible = true
@@ -53,6 +55,7 @@ class MapaEstatico(private val vista: VistaMapaBinding) {
         vista.ivPin.isVisible = false
         vista.vPrecision.isVisible = false
         vista.tvAtribucion.isVisible = false
+        vista.tvSinConexion.isVisible = false
     }
 
     fun cancelar() {

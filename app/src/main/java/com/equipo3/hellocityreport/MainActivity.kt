@@ -13,6 +13,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
@@ -23,6 +24,8 @@ import com.equipo3.hellocityreport.model.Incidencia
 import com.equipo3.hellocityreport.view.AvisosIncidencia
 import com.equipo3.hellocityreport.view.Notificaciones
 import com.google.android.material.appbar.AppBarLayout
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 /**
  * Activity única que aloja la navegación.
@@ -74,6 +77,17 @@ class MainActivity : AppCompatActivity(), AvisosIncidencia {
         )
         binding.toolbar.setupWithNavController(navController, appBarConfiguration)
 
+        // Engrane de Ajustes en la barra superior.
+        binding.toolbar.inflateMenu(R.menu.menu_toolbar)
+        binding.toolbar.setOnMenuItemClickListener { item ->
+            if (item.itemId == R.id.accion_ajustes) {
+                navController.navigate(R.id.ajustesFragment, null, NavOptions.Builder().setLaunchSingleTop(true).build())
+                true
+            } else {
+                false
+            }
+        }
+
         // Conecta la barra inferior con el NavGraph: marca la opción de la
         // pantalla actual (los ids del menú son los mismos del NavGraph).
         binding.bottomNav.setupWithNavController(navController)
@@ -100,6 +114,8 @@ class MainActivity : AppCompatActivity(), AvisosIncidencia {
         // en el siguiente ciclo (post) para que la transición de la foto registre
         // primero su posición inicial y no "brinque" cuando las barras desaparecen.
         navController.addOnDestinationChangedListener { _, destino, _ ->
+            binding.toolbar.menu.findItem(R.id.accion_ajustes)?.isVisible =
+                destino.id in appBarConfiguration.topLevelDestinations
             binding.root.post {
                 pantallaCompleta = destino.id in pantallasCompletas
                 actualizarBarras()
@@ -151,14 +167,19 @@ class MainActivity : AppCompatActivity(), AvisosIncidencia {
     }
 
     // Desde Android 13 mostrar notificaciones requiere permiso del usuario. Se pide
-    // la primera vez que hay algo que avisar (al guardar un reporte).
+    // la primera vez que hay algo que avisar (al guardar un reporte). Si el usuario
+    // apagó los avisos en Ajustes (preferencia de DataStore), no se notifica.
     override fun avisarIncidenciaGuardada(incidencia: Incidencia) {
-        if (Notificaciones.tienePermiso(this)) {
-            Notificaciones.avisarIncidenciaGuardada(this, incidencia)
-        } else {
-            // Solo llega aquí en Android 13 o superior (antes no hacía falta el permiso).
-            incidenciaPorAvisar = incidencia
-            pedirPermisoNotificaciones.launch(Manifest.permission.POST_NOTIFICATIONS)
+        lifecycleScope.launch {
+            val avisosActivos = (application as CityReportApp).preferencias.avisosActivos.first()
+            if (!avisosActivos) return@launch
+            if (Notificaciones.tienePermiso(this@MainActivity)) {
+                Notificaciones.avisarIncidenciaGuardada(this@MainActivity, incidencia)
+            } else {
+                // Solo llega aquí en Android 13 o superior (antes no hacía falta el permiso).
+                incidenciaPorAvisar = incidencia
+                pedirPermisoNotificaciones.launch(Manifest.permission.POST_NOTIFICATIONS)
+            }
         }
     }
 }

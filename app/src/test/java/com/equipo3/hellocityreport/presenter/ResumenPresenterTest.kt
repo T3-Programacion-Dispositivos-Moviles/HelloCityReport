@@ -30,7 +30,7 @@ class ResumenPresenterTest {
             )
         )
         val vista = VistaFalsa()
-        ResumenPresenter(vista, repositorio).cargarResumen()
+        ResumenPresenter(vista, repositorio, alInstante()).cargarResumen()
 
         assertEquals(4, vista.total)
         assertEquals(
@@ -48,7 +48,7 @@ class ResumenPresenterTest {
     @Test
     fun `sin incidencias todo queda en cero`() {
         val vista = VistaFalsa()
-        ResumenPresenter(vista, FakeIncidenciaRepository()).cargarResumen()
+        ResumenPresenter(vista, FakeIncidenciaRepository(), alInstante()).cargarResumen()
 
         assertEquals(0, vista.total)
         assertEquals(listOf(0, 0, 0), vista.porEstado.map { it.porcentaje })

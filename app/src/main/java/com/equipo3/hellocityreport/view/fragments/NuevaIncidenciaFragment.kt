@@ -17,13 +17,14 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.equipo3.hellocityreport.R
+import com.equipo3.hellocityreport.app
 import com.equipo3.hellocityreport.contract.NuevaIncidenciaContract
 import com.equipo3.hellocityreport.contract.NuevaIncidenciaContract.Campo
 import com.equipo3.hellocityreport.databinding.FragmentNuevaIncidenciaBinding
 import com.equipo3.hellocityreport.model.Incidencia
-import com.equipo3.hellocityreport.model.IncidenciaDataSource
 import com.equipo3.hellocityreport.model.ProveedorUbicacionFused
 import com.equipo3.hellocityreport.model.Ubicacion
 import com.equipo3.hellocityreport.presenter.NuevaIncidenciaPresenter
@@ -70,8 +71,9 @@ class NuevaIncidenciaFragment : Fragment(), NuevaIncidenciaContract.View {
         // El Presenter se crea con el Fragment (no con su vista) para que la foto y
         // la ubicación sigan ahí al regresar de la cámara.
         presenter = NuevaIncidenciaPresenter(
-            IncidenciaDataSource,
-            ProveedorUbicacionFused(requireContext())
+            app.repositorio,
+            ProveedorUbicacionFused(requireContext()),
+            lifecycleScope
         )
         savedInstanceState?.let { restaurarEstado(it) }
     }

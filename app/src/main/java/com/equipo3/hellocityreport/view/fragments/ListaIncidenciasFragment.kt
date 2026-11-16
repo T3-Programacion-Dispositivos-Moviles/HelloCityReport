@@ -7,13 +7,14 @@ import android.view.ViewGroup
 import androidx.core.view.doOnPreDraw
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.equipo3.hellocityreport.R
+import com.equipo3.hellocityreport.app
 import com.equipo3.hellocityreport.contract.ListaIncidenciasContract
 import com.equipo3.hellocityreport.databinding.FragmentListaIncidenciasBinding
 import com.equipo3.hellocityreport.model.Incidencia
-import com.equipo3.hellocityreport.model.IncidenciaDataSource
 import com.equipo3.hellocityreport.presenter.ListaIncidenciasPresenter
 import com.equipo3.hellocityreport.view.adapter.IncidenciaAdapter
 import com.google.android.material.transition.Hold
@@ -57,12 +58,12 @@ class ListaIncidenciasFragment : Fragment(), ListaIncidenciasContract.View {
         super.onViewCreated(view, savedInstanceState)
 
         // Al regresar del detalle hay que esperar a que la lista dibuje sus tarjetas
-        // para que la animación de regreso encuentre la tarjeta de destino.
+        // para que la animación de regreso encuentre la tarjeta de destino. Los datos
+        // llegan de la base un instante después, así que se espera a recibirlos.
         postponeEnterTransition()
-        binding.recyclerIncidencias.doOnPreDraw { startPostponedEnterTransition() }
 
         // La vista crea su Presenter y le entrega el Modelo (repositorio de datos).
-        presenter = ListaIncidenciasPresenter(this, IncidenciaDataSource)
+        presenter = ListaIncidenciasPresenter(this, app.repositorio, viewLifecycleOwner.lifecycleScope)
         presenter.cargarIncidencias()
     }
 
@@ -73,11 +74,13 @@ class ListaIncidenciasFragment : Fragment(), ListaIncidenciasContract.View {
             tarjetaSeleccionada = tarjeta
             presenter.alSeleccionarIncidencia(incidencia)
         }
+        binding.recyclerIncidencias.doOnPreDraw { startPostponedEnterTransition() }
     }
 
     override fun mostrarListaVacia() {
         binding.recyclerIncidencias.isVisible = false
         binding.txtListaVacia.isVisible = true
+        startPostponedEnterTransition()
     }
 
     override fun abrirDetalle(incidenciaId: Int) {

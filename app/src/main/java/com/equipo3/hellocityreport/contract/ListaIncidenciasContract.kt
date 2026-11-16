@@ -21,7 +21,7 @@ interface ListaIncidenciasContract {
     }
 
     interface Presenter : BasePresenter {
-        /** Se llama cada vez que se crea la vista (también al regresar a ella). */
+        /** Se llama al crear la vista; desde ahí la lista se actualiza sola con cada cambio. */
         fun cargarIncidencias()
         fun alSeleccionarIncidencia(incidencia: Incidencia)
     }

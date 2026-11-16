@@ -36,6 +36,18 @@
         android:visibility="gone"
         app:tint="?attr/colorPrimary" />
 
+    <!-- Sin internet no se descarga el mapa: se avisa debajo del pin. -->
+    <TextView
+        android:id="@+id/tvSinConexion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="36dp"
+        android:text="@string/mapa_sin_conexion"
+        android:textAppearance="?attr/textAppearanceLabelMedium"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        android:visibility="gone" />
+
     <TextView
         android:id="@+id/tvAtribucion"
         android:layout_width="wrap_content"
