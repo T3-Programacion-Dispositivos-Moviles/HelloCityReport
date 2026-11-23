@@ -2,6 +2,8 @@ package com.equipo3.hellocityreport
 
 import android.app.Application
 import androidx.fragment.app.Fragment
+import com.equipo3.hellocityreport.model.CuentaFirebase
+import com.equipo3.hellocityreport.model.CuentaRepository
 import com.equipo3.hellocityreport.model.IncidenciaRepository
 import com.equipo3.hellocityreport.model.IncidenciaRepositoryRoom
 import com.equipo3.hellocityreport.model.PreferenciasDataStore
@@ -28,6 +30,9 @@ class CityReportApp : Application() {
     }
 
     val preferencias: PreferenciasRepository by lazy { PreferenciasDataStore(this) }
+
+    // Firebase se inicia solo (FirebaseInitProvider) con los datos de google-services.json.
+    val cuenta: CuentaRepository by lazy { CuentaFirebase() }
 
     override fun onCreate() {
         super.onCreate()

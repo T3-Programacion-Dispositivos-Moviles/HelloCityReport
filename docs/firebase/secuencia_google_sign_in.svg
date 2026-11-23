@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="1000" viewBox="0 0 1700 1000" font-family="Arial, Helvetica, sans-serif">
+<rect width="1700" height="1000" fill="#fff"/>
+<defs><marker id="f" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker>
+<marker id="fr" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#156082"/></marker></defs>
+<text x="60" y="56" font-size="26" fill="#156082" text-anchor="start" font-weight="700">Inicio de sesión con Google en CityReport (Credential Manager + Firebase Authentication)</text>
+<text x="60" y="86" font-size="15" fill="#555" text-anchor="start">Diagrama de secuencia · rama prueba/firebase-luis · Equipo 3 · 5CV50</text>
+<line x1="140" y1="184" x2="140" y2="940" stroke="#B8C7CF" stroke-width="2" stroke-dasharray="6 6"/>
+<rect x="20" y="120" width="240" height="64" rx="10" fill="#F1F4F6" stroke="#156082" stroke-width="2"/>
+<text x="140" y="158" font-size="17" fill="#156082" text-anchor="middle" font-weight="700">Usuario</text>
+<line x1="424" y1="184" x2="424" y2="940" stroke="#B8C7CF" stroke-width="2" stroke-dasharray="6 6"/>
+<rect x="304" y="120" width="240" height="64" rx="10" fill="#156082" stroke="#156082" stroke-width="2"/>
+<text x="424" y="148" font-size="17" fill="#fff" text-anchor="middle" font-weight="700">CityReport</text>
+<text x="424" y="170" font-size="12.5" fill="#DCEAF0" text-anchor="middle">AjustesFragment + CuentaPresenter</text>
+<line x1="708" y1="184" x2="708" y2="940" stroke="#B8C7CF" stroke-width="2" stroke-dasharray="6 6"/>
+<rect x="588" y="120" width="240" height="64" rx="10" fill="#156082" stroke="#156082" stroke-width="2"/>
+<text x="708" y="148" font-size="17" fill="#fff" text-anchor="middle" font-weight="700">Credential Manager</text>
+<text x="708" y="170" font-size="12.5" fill="#DCEAF0" text-anchor="middle">API del sistema (androidx)</text>
+<line x1="992" y1="184" x2="992" y2="940" stroke="#B8C7CF" stroke-width="2" stroke-dasharray="6 6"/>
+<rect x="872" y="120" width="240" height="64" rx="10" fill="#156082" stroke="#156082" stroke-width="2"/>
+<text x="992" y="148" font-size="17" fill="#fff" text-anchor="middle" font-weight="700">Google Play services</text>
+<text x="992" y="170" font-size="12.5" fill="#DCEAF0" text-anchor="middle">Cuenta de Google del teléfono</text>
+<line x1="1276" y1="184" x2="1276" y2="940" stroke="#B8C7CF" stroke-width="2" stroke-dasharray="6 6"/>
+<rect x="1156" y="120" width="240" height="64" rx="10" fill="#156082" stroke="#156082" stroke-width="2"/>
+<text x="1276" y="148" font-size="17" fill="#fff" text-anchor="middle" font-weight="700">Firebase Authentication</text>
+<text x="1276" y="170" font-size="12.5" fill="#DCEAF0" text-anchor="middle">Proveedor Google</text>
+<line x1="1560" y1="184" x2="1560" y2="940" stroke="#B8C7CF" stroke-width="2" stroke-dasharray="6 6"/>
+<rect x="1440" y="120" width="240" height="64" rx="10" fill="#156082" stroke="#156082" stroke-width="2"/>
+<text x="1560" y="148" font-size="17" fill="#fff" text-anchor="middle" font-weight="700">Cloud Firestore</text>
+<text x="1560" y="170" font-size="12.5" fill="#DCEAF0" text-anchor="middle">usuarios/{uid}</text>
+<line x1="146" y1="236" x2="416" y2="236" stroke="#333" stroke-width="2" marker-end="url(#f)"/>
+<text x="282" y="226" font-size="14.5" fill="#222" text-anchor="middle" font-weight="700" stroke="#fff" stroke-width="6" paint-order="stroke">1. Toca "Iniciar sesión con Google"</text>
+<line x1="430" y1="298" x2="700" y2="298" stroke="#333" stroke-width="2" marker-end="url(#f)"/>
+<text x="566" y="288" font-size="14.5" fill="#222" text-anchor="middle" font-weight="700" stroke="#fff" stroke-width="6" paint-order="stroke">2. getCredential(GetSignInWithGoogleOption)</text>
+<text x="566" y="318" font-size="12.5" fill="#555" text-anchor="middle" font-style="italic" stroke="#fff" stroke-width="6" paint-order="stroke">serverClientId = cliente Web de OAuth</text>
+<line x1="714" y1="368" x2="984" y2="368" stroke="#333" stroke-width="2" marker-end="url(#f)"/>
+<text x="850" y="358" font-size="14.5" fill="#222" text-anchor="middle" font-weight="700" stroke="#fff" stroke-width="6" paint-order="stroke">3. Pide un ID token para la app</text>
+<text x="850" y="388" font-size="12.5" fill="#555" text-anchor="middle" font-style="italic" stroke="#fff" stroke-width="6" paint-order="stroke">verifica paquete + huella SHA-1</text>
+<line x1="986" y1="438" x2="148" y2="438" stroke="#156082" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#fr)"/>
+<text x="566" y="428" font-size="14.5" fill="#156082" text-anchor="middle" stroke="#fff" stroke-width="6" paint-order="stroke">4. Hoja "Elige una cuenta"</text>
+<line x1="146" y1="500" x2="984" y2="500" stroke="#333" stroke-width="2" marker-end="url(#f)"/>
+<text x="566" y="490" font-size="14.5" fill="#222" text-anchor="middle" font-weight="700" stroke="#fff" stroke-width="6" paint-order="stroke">5. Elige su cuenta de Google</text>
+<line x1="986" y1="562" x2="432" y2="562" stroke="#156082" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#fr)"/>
+<text x="708" y="552" font-size="14.5" fill="#156082" text-anchor="middle" stroke="#fff" stroke-width="6" paint-order="stroke">6. GoogleIdTokenCredential (ID token firmado por Google)</text>
+<line x1="430" y1="624" x2="1268" y2="624" stroke="#333" stroke-width="2" marker-end="url(#f)"/>
+<text x="850" y="614" font-size="14.5" fill="#222" text-anchor="middle" font-weight="700" stroke="#fff" stroke-width="6" paint-order="stroke">7. signInWithCredential(GoogleAuthProvider.getCredential(idToken))</text>
+<line x1="1270" y1="686" x2="432" y2="686" stroke="#156082" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#fr)"/>
+<text x="850" y="676" font-size="14.5" fill="#156082" text-anchor="middle" stroke="#fff" stroke-width="6" paint-order="stroke">8. FirebaseUser: uid, nombre, correo (sesión guardada)</text>
+<line x1="430" y1="748" x2="1552" y2="748" stroke="#333" stroke-width="2" marker-end="url(#f)"/>
+<text x="992" y="738" font-size="14.5" fill="#222" text-anchor="middle" font-weight="700" stroke="#fff" stroke-width="6" paint-order="stroke">9. set(usuarios/{uid}) con SetOptions.merge()</text>
+<text x="992" y="768" font-size="12.5" fill="#555" text-anchor="middle" font-style="italic" stroke="#fff" stroke-width="6" paint-order="stroke">regla: request.auth.uid == uid</text>
+<line x1="1554" y1="818" x2="432" y2="818" stroke="#156082" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#fr)"/>
+<text x="992" y="808" font-size="14.5" fill="#156082" text-anchor="middle" stroke="#fff" stroke-width="6" paint-order="stroke">10. Escritura aceptada</text>
+<line x1="418" y1="880" x2="148" y2="880" stroke="#156082" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#fr)"/>
+<text x="282" y="870" font-size="14.5" fill="#156082" text-anchor="middle" stroke="#fff" stroke-width="6" paint-order="stroke">11. Muestra nombre, correo y "Cerrar sesión"</text>
+<line x1="60" y1="962" x2="120" y2="962" stroke="#333" stroke-width="2" marker-end="url(#f)"/>
+<text x="132" y="967" font-size="14" fill="#222" text-anchor="start">Solicitud</text>
+<line x1="250" y1="962" x2="310" y2="962" stroke="#156082" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#fr)"/>
+<text x="322" y="967" font-size="14" fill="#222" text-anchor="start">Respuesta</text>
+<text x="480" y="967" font-size="14" fill="#555" text-anchor="start">Al cerrar sesión: FirebaseAuth.signOut() + CredentialManager.clearCredentialState()</text>
+</svg>

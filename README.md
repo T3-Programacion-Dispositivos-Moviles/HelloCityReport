@@ -56,6 +56,12 @@ elementos compartidos.
 - **DataStore** (Preferences) guarda el tema (Claro, Oscuro o Sistema) y si se envía un aviso al guardar un reporte.
 - Todo funciona en modo avión; sin conexión solo faltan el mapa (se muestra un aviso) y la dirección automática.
 
+### Firebase (rama de prueba)
+
+En las ramas `prueba/firebase-*` se integra **Firebase Authentication** con **Google Sign-In** (Credential
+Manager) y el perfil del usuario se guarda en **Cloud Firestore**. Cada integrante usa su propio proyecto de
+Firebase: los pasos de configuración y el diagrama del flujo están en [docs/firebase](docs/firebase/README.md).
+
 ---
 
 ## Modelo de datos (diagrama ER)

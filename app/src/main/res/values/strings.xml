@@ -88,6 +88,14 @@
     <string name="resumen_conteo">%1$d (%2$d %%)</string>
 
     <!-- Ajustes (DataStore) -->
+    <string name="ajustes_cuenta">Cuenta</string>
+    <string name="cuenta_sin_sesion">Sin sesión iniciada</string>
+    <string name="cuenta_sin_sesion_ayuda">Inicia sesión para sincronizar tus reportes en la nube (próximamente).</string>
+    <string name="cuenta_iniciar_google">Iniciar sesión con Google</string>
+    <string name="cuenta_cerrar_sesion">Cerrar sesión</string>
+    <string name="cuenta_iniciando">Esperando la cuenta de Google…</string>
+    <string name="cuenta_error">No se pudo iniciar sesión. Revisa tu conexión e inténtalo de nuevo.</string>
+    <string name="cuenta_sin_cuentas">No hay cuentas de Google en el teléfono. Agrega una en Ajustes del sistema.</string>
     <string name="ajustes_apariencia">Apariencia</string>
     <string name="ajustes_tema">Tema</string>
     <string name="ajustes_tema_ayuda">Sistema usa el mismo modo que tu teléfono.</string>
